@@ -265,16 +265,41 @@ NNI 由临界氮稀释曲线计算：`Nc = 3.4·W^(−0.37)`（Plénet & Lemaire
 绝对水平取决于所选临界曲线（APSIM 内部临界氮更低），**有意义的只是小区间相对差异**：
 A1 最低，139 kg N/ha 以上挤在 0.77–0.81。
 
-## 2.7 图件
+## 2.7 优化前后对比
 
-`analysis/out/fig/`，共 8 张；C 与 L 内容相同、命名不同。
+C 系列为采用的标定，L 系列为优化前基线。**两者只差一个参数**：
+`Leaf.CohortParameters.SenescenceAcceleration.One` = 0.20（C）vs 0.33（L）。
+其余参数、土壤、气象、管理完全相同。
 
-| C 系列 | L 系列 | 内容 |
+| 指标 | L 优化前 (0.33) | C 优化后 (0.20) | 变化 |
+|---|---|---|---|
+| 产量 RRMSE | 8.98% | **8.47%** | −0.51 pp |
+| 产量偏差 | +2.99% | **+2.81%** | −0.18 pp |
+| LAI RMSE | 0.375 | **0.342** | −0.033 |
+| 生物量 RRMSE | 22.53% | 21.92% | −0.61 pp |
+| HI 模拟 | 0.624 | 0.619 | −0.005 |
+| **LAI 平台期**（08-14→08-29，九小区均值） | −8.06% | **−5.24%** | 接近实测 −3.2% |
+| A1 季末 LAI | 1.69 | 2.18 | +0.49 |
+| A1 季末衰减 | −45.2% | −29.3% | 衰减变缓 |
+
+两项指标互有得失：平台期拟合改善，但季末衰减变弱（过度偏绿）。取舍依据见 §3.4。
+
+## 2.8 图件
+
+`analysis/out/fig/`，共 8 张。C 与 L **图式、尺寸、配色完全一致**，
+仅数据版本与标题注记不同，可直接并排对照。
+
+| C 系列（sen=0.20，优化后） | L 系列（sen=0.33，优化前） | 内容 |
 |---|---|---|
-| `C1_LAI.png` | `L1_LAI.png` | 3×3 九联图，逐小区 LAI 实测点 vs 模拟曲线 |
-| `C2_生物量.png` | `L2_生物量.png` | 3×3 九联图，逐小区地上部生物量 |
-| `C3_产量.png` | `L3_产量.png` | 逐小区产量柱状对比 + 1:1 散点 |
-| `C4_氮响应.png` | `L4_氮响应.png` | 产量 / 生物量 / HI 对施氮量的响应 |
+| `C1_LAI.png` | `L1_LAI.png` | 3×3 九联图，逐小区 LAI 实测点 vs 模拟曲线，标题含该小区 LAI RMSE |
+| `C2_生物量.png` | `L2_生物量.png` | 3×3 九联图，逐小区地上部生物量（空心三角 = 器官分配可疑） |
+| `C3_产量.png` | `L3_产量.png` | 逐小区产量柱状对比 + 偏差%，右栏 1:1 散点 |
+| `C4_氮响应.png` | `L4_氮响应.png` | 产量 / 生物量 / HI 对施氮量的响应，实测实线 + 模拟虚线 |
+
+| 生成脚本 | 输出 |
+|---|---|
+| `s20_conservative_figures.py` | C1–C4（读 `sim_calibrated_daily.csv`） |
+| `s12_figures.py` | L1–L4（以 sen=0.33 重跑 9 小区） |
 
 ---
 
@@ -380,7 +405,9 @@ APSIM 玉米衰老只有一个恒定加速度（`Lag`、`SenescenceDuration` 等
 | 输入清单（23 小区） | `analysis/reports/inputs/01_model_inputs.csv` |
 | 管理日程（208 条） | `analysis/reports/inputs/02_management_schedule.csv` |
 | 逐日模拟 | `analysis/out/sim/sim_calibrated_daily.csv` |
-| 逐小区验证 | `analysis/out/sim/validate_plots.csv`、`validate_stats.csv` |
+| 逐小区验证（C） | `analysis/out/sim/validate_plots.csv`、`validate_stats.csv` |
+| 逐日模拟（L 基线） | `analysis/out/sim/sim_baseline_sen033_daily.csv` |
+| 逐小区验证（L 基线） | `analysis/out/sim/validate_plots_baseline.csv` |
 | 品种参数 | `analysis/out/sim/phenology_calibrated.json`、`calibrated_cultivars.json` |
 
 ## 4.3 复现
@@ -390,8 +417,8 @@ python analysis/src/run_all.py                    # 数据 → 输入 → 模拟
 python analysis/src/s10_phenology.py --variety 乐农87      # 物候标定
 python analysis/src/s07_calibrate.py --variety 乐农87 --stage growth
 python analysis/src/s08_validate.py               # 验证
-python analysis/src/s12_figures.py                # L 系列图
-python analysis/src/s20_conservative_figures.py   # C 系列图
+python analysis/src/s12_figures.py                # L 系列图（sen=0.33 重跑后绘制）
+python analysis/src/s20_conservative_figures.py   # C 系列图（sen=0.20）
 ```
 
 本文件由上述脚本产出的 CSV/JSON 汇总而成，数值可逐项复算。

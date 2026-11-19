@@ -36,22 +36,32 @@ python analysis/src/run_all.py                    # 全流程
 python analysis/src/s10_phenology.py --variety 乐农87      # 物候标定
 python analysis/src/s07_calibrate.py --variety 乐农87 --stage growth
 python analysis/src/s08_validate.py               # 验证（只出表，不出图）
-python analysis/src/s12_figures.py                # L 系列图（L1-L4）
-python analysis/src/s20_conservative_figures.py   # C 系列图（C1-C4）
+python analysis/src/s20_conservative_figures.py   # C 系列图（sen=0.20，优化后）
+python analysis/src/s12_figures.py                # L 系列图（sen=0.33 重跑，优化前）
 ```
 
 一键：`python analysis/src/run_all.py [--calibrate]`
 
 ## 图件
 
-`analysis/out/fig/`，共 8 张，C 与 L 内容相同、命名不同。
+`analysis/out/fig/`，共 8 张。C 与 L 图式完全一致，仅参数版本不同，可并排对照。
 
-| C 系列 | L 系列 | 内容 |
+| C 系列（**优化后** sen=0.20） | L 系列（**优化前** sen=0.33） | 内容 |
 |---|---|---|
 | `C1_LAI.png` | `L1_LAI.png` | 逐小区 LAI |
 | `C2_生物量.png` | `L2_生物量.png` | 逐小区地上部生物量 |
 | `C3_产量.png` | `L3_产量.png` | 逐小区产量 + 1:1 |
 | `C4_氮响应.png` | `L4_氮响应.png` | 产量/生物量/HI 对施氮量 |
+
+C 与 L 只差一个参数 `SenescenceAcceleration`（0.20 vs 0.33）：
+
+| 指标 | L 优化前 | C 优化后 |
+|---|---|---|
+| 产量 RRMSE | 8.98% | **8.47%** |
+| LAI RMSE | 0.375 | **0.342** |
+| LAI 平台期 | −8.06% | **−5.24%**（实测 −3.2%） |
+| 生物量 RRMSE | 22.53% | 21.92% |
+| A1 季末衰减 | −45% | −29% |
 
 ## 标定流程
 

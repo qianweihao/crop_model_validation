@@ -76,7 +76,7 @@ def _finish(fig, axes, title, ylabel) -> None:
 
 
 # --------------------------------------------------------------------------
-def fig_lai(sim, obs, val, prefix: str) -> Path:
+def fig_lai(sim, obs, val, prefix: str, note: str = "") -> Path:
     fig, axes = _grid()
     for ax in axes.ravel():
         ax.set_ylim(0, 4.2)
@@ -88,7 +88,7 @@ def fig_lai(sim, obs, val, prefix: str) -> Path:
         ax.set_title(f"{plot}  N={N_RATE[plot]}  LAI RMSE={val.loc[plot, 'lai_rmse']:.2f}",
                      fontsize=9.5)
     axes[0, 0].legend(frameon=False, loc="upper left")
-    _finish(fig, axes, f"{prefix}1  逐小区 LAI：实测 vs 模拟", "LAI")
+    _finish(fig, axes, f"{prefix}1  逐小区 LAI：实测 vs 模拟{note}", "LAI")
     fig.tight_layout()
     p = FIG / f"{prefix}1_LAI.png"
     fig.savefig(p, bbox_inches="tight")
@@ -96,7 +96,7 @@ def fig_lai(sim, obs, val, prefix: str) -> Path:
     return p
 
 
-def fig_biomass(sim, obs, prefix: str) -> Path:
+def fig_biomass(sim, obs, prefix: str, note: str = "") -> Path:
     fig, axes = _grid()
     for ax in axes.ravel():
         ax.set_ylim(0, 20000)
@@ -114,7 +114,7 @@ def fig_biomass(sim, obs, prefix: str) -> Path:
                 color=SIMCOL, label="模拟")
         ax.set_title(f"{plot}  N={N_RATE[plot]}", fontsize=9.5)
     axes[0, 0].legend(frameon=False, loc="upper left", fontsize=7)
-    _finish(fig, axes, f"{prefix}2  逐小区地上部生物量：实测 vs 模拟", "生物量 (kg/ha)")
+    _finish(fig, axes, f"{prefix}2  逐小区地上部生物量：实测 vs 模拟{note}", "生物量 (kg/ha)")
     fig.tight_layout()
     p = FIG / f"{prefix}2_生物量.png"
     fig.savefig(p, bbox_inches="tight")
@@ -122,7 +122,7 @@ def fig_biomass(sim, obs, prefix: str) -> Path:
     return p
 
 
-def fig_yield(val, prefix: str) -> Path:
+def fig_yield(val, prefix: str, note: str = "") -> Path:
     fig, axes = plt.subplots(1, 2, figsize=(14.5, 5.0),
                              gridspec_kw={"width_ratios": [1.35, 1]})
     ob = val["obs_yield_dry"].reindex(ORDER).values
@@ -154,7 +154,7 @@ def fig_yield(val, prefix: str) -> Path:
     ax.set_ylabel("模拟产量 (kg/ha)")
     ax.set_title("1:1")
 
-    fig.suptitle(f"{prefix}3  逐小区产量：实测 vs 模拟", fontsize=13.5, y=1.01)
+    fig.suptitle(f"{prefix}3  逐小区产量：实测 vs 模拟{note}", fontsize=13.5, y=1.01)
     fig.tight_layout()
     p = FIG / f"{prefix}3_产量.png"
     fig.savefig(p, bbox_inches="tight")
@@ -162,7 +162,7 @@ def fig_yield(val, prefix: str) -> Path:
     return p
 
 
-def fig_nitrogen_response(val, prefix: str) -> Path:
+def fig_nitrogen_response(val, prefix: str, note: str = "") -> Path:
     """Yield, biomass and harvest index against nitrogen rate (the old L3 panel)."""
     n = np.array([N_RATE[p] for p in ORDER], dtype=float)
     panels = [
@@ -189,7 +189,7 @@ def fig_nitrogen_response(val, prefix: str) -> Path:
     axes[0].text(0.04, 0.94, f"0→254 kg N/ha\n实测 {d_o:+.0f}%  模拟 {d_s:+.0f}%",
                  transform=axes[0].transAxes, va="top", fontsize=8.5,
                  bbox=dict(fc="white", ec="grey", alpha=0.9))
-    fig.suptitle(f"{prefix}4  氮素响应：模拟 vs 实测", fontsize=13.5, y=1.02)
+    fig.suptitle(f"{prefix}4  氮素响应：模拟 vs 实测{note}", fontsize=13.5, y=1.02)
     fig.tight_layout()
     p = FIG / f"{prefix}4_氮响应.png"
     fig.savefig(p, bbox_inches="tight")
@@ -197,16 +197,19 @@ def fig_nitrogen_response(val, prefix: str) -> Path:
     return p
 
 
-def make_all(prefix: str) -> list[Path]:
-    sim, obs, val = load()
-    return [fig_lai(sim, obs, val, prefix), fig_biomass(sim, obs, prefix),
-            fig_yield(val, prefix), fig_nitrogen_response(val, prefix)]
+def make_all(prefix: str, sim=None, obs=None, val=None, note: str = "") -> list[Path]:
+    """Draw the four figures.  Data can be injected so a second parameter set
+    (the pre-optimisation baseline) can reuse exactly the same code path."""
+    if sim is None or obs is None or val is None:
+        sim, obs, val = load()
+    return [fig_lai(sim, obs, val, prefix, note), fig_biomass(sim, obs, prefix, note),
+            fig_yield(val, prefix, note), fig_nitrogen_response(val, prefix, note)]
 
 
 def main() -> None:
     sim, obs, val = load()
     print(f"sim rows={len(sim)}  plots={sim['sim'].nunique()}")
-    for p in make_all("C"):
+    for p in make_all("C", note="（sen=0.20，优化后）"):
         print(" ", p)
     o, s = val["obs_yield_dry"], val["sim_yield"]
     print(f"\n产量 RRMSE {np.sqrt(np.mean((s - o) ** 2)) / o.mean() * 100:.2f}%  "
