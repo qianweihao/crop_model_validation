@@ -1,0 +1,89 @@
+{
+  "乐农87": {
+    "params": {
+      "Structure.zFinalLeafNumber.FixedValue": 24.2,
+      "Phenology.Juvenile.Target.FixedValue": 254.3,
+      "Phenology.FlagLeafToFlowering.Target.FixedValue": 73.7,
+      "Phenology.FloweringToGrainFilling.Target.FixedValue": 97.3,
+      "Phenology.GrainFilling.Target.FixedValue": 769.7,
+      "Phenology.Maturing.Target.FixedValue": 89.7
+    },
+    "score": 14.349278656405833,
+    "leaf_rmse": 1.3596200024954428,
+    "stages": {
+      "tassel": [
+        "2026-08-05",
+        "2026-08-06",
+        -1
+      ],
+      "silking": [
+        "2026-08-09",
+        "2026-08-09",
+        0
+      ],
+      "harvest": [
+        "2026-10-08",
+        "2026-10-08",
+        0
+      ]
+    }
+  },
+  "MY73": {
+    "params": {
+      "Structure.zFinalLeafNumber.FixedValue": 24.9,
+      "Phenology.Juvenile.Target.FixedValue": 241.1,
+      "Phenology.FlagLeafToFlowering.Target.FixedValue": 76.7,
+      "Phenology.FloweringToGrainFilling.Target.FixedValue": 232.9,
+      "Phenology.GrainFilling.Target.FixedValue": 625.0,
+      "Phenology.Maturing.Target.FixedValue": 68.7
+    },
+    "score": 19.89017970779104,
+    "leaf_rmse": 2.7184884969024683,
+    "stages": {
+      "tassel": [
+        "2026-08-04",
+        "2026-08-05",
+        -1
+      ],
+      "silking": [
+        "2026-08-08",
+        "2026-08-08",
+        0
+      ],
+      "harvest": [
+        "2026-10-04",
+        "2026-10-04",
+        0
+      ]
+    }
+  },
+  "金华创826": {
+    "params": {
+      "Structure.zFinalLeafNumber.FixedValue": 22.8,
+      "Phenology.Juvenile.Target.FixedValue": 245.3,
+      "Phenology.FlagLeafToFlowering.Target.FixedValue": 91.0,
+      "Phenology.FloweringToGrainFilling.Target.FixedValue": 124.1,
+      "Phenology.GrainFilling.Target.FixedValue": 753.8,
+      "Phenology.Maturing.Target.FixedValue": 18.0
+    },
+    "score": 7.018106062258331,
+    "leaf_rmse": 2.6491708254203488,
+    "stages": {
+      "tassel": [
+        "2026-08-05",
+        "2026-08-05",
+        0
+      ],
+      "silking": [
+        "2026-08-10",
+        "2026-08-10",
+        0
+      ],
+      "harvest": [
+        "2026-10-04",
+        "2026-10-04",
+        0
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+C:\ProgramData\miniconda3\Lib\site-packages\scipy\optimize\_differentialevolution.py:487: UserWarning: differential_evolution: the 'workers' keyword has overridden updating='immediate' to updating='deferred'
+  with DifferentialEvolutionSolver(func, bounds, args=args,
+[MY73] using leaf-constrained phenology
+  gen   1: n=32 best=0.5876 (145s)
+  gen   2: n=32 best=0.5630 (290s)
+  gen   3: n=32 best=0.5862 (435s)
+  gen   4: n=32 best=0.5353 (580s)
+  gen   5: n=32 best=0.5667 (726s)
+  gen   6: n=32 best=0.5366 (870s)
+  gen   7: n=32 best=0.5418 (1015s)
+  gen   8: n=32 best=0.5376 (1160s)
+  gen   9: n=32 best=0.5372 (1306s)
+  gen  10: n=32 best=0.5358 (1452s)
+  gen  11: n=32 best=0.5351 (1598s)
+  gen  12: n=32 best=0.5357 (1745s)
+  gen  13: n=32 best=0.5357 (1892s)
+[MY73] growth    score=0.535  {'Leaf.Photosynthesis.RUE.FixedValue': 3.116, 'Grain.MaximumGrainsPerCob.FixedValue': 641.109, 'Grain.MaximumPotentialGrainSize.FixedValue': 0.226}
+
+-> E:\work\zoomlion_crop_model\analysis\out\sim\calibrated_cultivars.json

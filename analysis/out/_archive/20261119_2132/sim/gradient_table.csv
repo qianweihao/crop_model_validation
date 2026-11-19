@@ -1,0 +1,4 @@
+trial_id,n_levels,n_range_kg_ha,obs_yield_range,sim_yield_range,obs_dYield_dN_kg_per_kg,sim_dYield_dN_kg_per_kg,obs_span_pct,sim_span_pct
+SD_SF,9,0-254,7080-10079,4896-5181,10.35,-0.74,42.4,5.8
+XX_IRR,5,270-270,9611-10239,2222-4920,18.45,6.36,6.5,121.4
+XX_SF,9,0-276,7357-10718,2222-5909,9.04,11.63,45.7,165.9

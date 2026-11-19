@@ -1,0 +1,5 @@
+C:\ProgramData\miniconda3\Lib\site-packages\scipy\optimize\_differentialevolution.py:487: UserWarning: differential_evolution: the 'workers' keyword has overridden updating='immediate' to updating='deferred'
+  with DifferentialEvolutionSolver(func, bounds, args=args,
+[金华创826] using leaf-constrained phenology
+  gen   1: n=32 best=476489.1220 (146s)
+  gen   2: n=32 best=477858.6257 (292s)

@@ -1,0 +1,8 @@
+{
+  "Leaf.Photosynthesis.RUE.FixedValue": 4.0,
+  "Grain.MaximumGrainsPerCob.FixedValue": 600.0,
+  "Grain.MaximumPotentialGrainSize.FixedValue": 0.26,
+  "Leaf.CohortParameters.MaxArea.LargestLeafPosition.RelativePositionOfLargestLeaf.FixedValue": 0.33,
+  "Leaf.CohortParameters.StructuralFraction.FixedValue": 0.80,
+  "Leaf.CohortParameters.SenescenceAcceleration.One.FixedValue": 0.08
+}

@@ -1,0 +1,16 @@
+{
+  "乐农87": {
+    "phenology": {
+      "Phenology.Juvenile.Target.FixedValue": 245.8,
+      "Phenology.FlagLeafToFlowering.Target.FixedValue": 135.0,
+      "Phenology.FloweringToGrainFilling.Target.FixedValue": 196.4,
+      "Phenology.GrainFilling.Target.FixedValue": 689.7,
+      "Phenology.Maturing.Target.FixedValue": 41.5
+    },
+    "growth": {
+      "Leaf.Photosynthesis.RUE.FixedValue": 2.008,
+      "Grain.MaximumGrainsPerCob.FixedValue": 1035.805,
+      "Grain.MaximumPotentialGrainSize.FixedValue": 0.329
+    }
+  }
+}

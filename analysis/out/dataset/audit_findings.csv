@@ -1,0 +1,29 @@
+check,scope,detail,severity
+soil_param_scatter,SD_SF,"FC 31.41-34.62% (CV=3%), SAT 39.3-43.1% (CV=3%)",info
+soil_param_scatter,XX_IRR,"FC 21.35-24.40% (CV=6%), SAT 31.3-32.5% (CV=1%)",info
+soil_param_scatter,XX_SF,"FC 21.43-30.81% (CV=10%), SAT 30.3-45.1% (CV=13%)",warn
+derived_column_divisor,SD_SF,"supplied '按小区密度' columns used a density other than the measured one on ['07-23', '08-21'] (inflation x1.17-1.36); recalculated",high
+derived_column_divisor,XX_IRR,no measured plot density -> supplied '按小区密度' columns are blank; plot-scale LAI/biomass cannot be derived (per-plant only),warn
+derived_column_divisor,SD_MY73,no measured plot density -> supplied '按小区密度' columns are blank; plot-scale LAI/biomass cannot be derived (per-plant only),warn
+derived_column_divisor,SD_DH997,no measured plot density -> supplied '按小区密度' columns are blank; plot-scale LAI/biomass cannot be derived (per-plant only),warn
+organ_sum_vs_total,all,"leaf+stem+root+ear differs from total DW by 17% (median); 135/376 records off by >25% (root rarely measured, ear absent before silking) - use total_dw for calibration",info
+biomass_monotonicity,SD_DH997,0/5 plots have a >10% drop in per-plant DW (none),ok
+biomass_monotonicity,SD_MY73,"2/4 plots have a >10% drop in per-plant DW (W2, W3)",warn
+biomass_monotonicity,SD_SF,0/9 plots have a >10% drop in per-plant DW (none),ok
+biomass_monotonicity,XX_IRR,1/5 plots have a >10% drop in per-plant DW (A3),warn
+biomass_monotonicity,XX_SF,"7/9 plots have a >10% drop in per-plant DW (A1B1, A2B2, A3B1, A3B2, A4B1, A4B2, CK)",warn
+density_vs_N,SD_SF,"corr(total N, measured density) = -0.54; density 3757-4675 /mu from 5640 planted (76% establishment)",warn
+density_vs_N,XX_SF,"corr(total N, measured density) = +0.30; density 5008-5420 /mu from 5500 planted (96% establishment)",info
+yield_vs_N,SD_SF,0.0N->472 ; 9.2N->588 ; 9.2N->592 ; 11.8N->646 ; 11.8N->672 ; 14.3N->607 ; 14.3N->638 ; 16.9N->638 ; 16.9N->670 kg/mu  (span +42%),info
+yield_vs_N,XX_IRR,18.0N->683 ; 18.0N->680 ; 18.0N->671 ; 18.0N->641 ; 18.0N->648 kg/mu  (span +7%),info
+yield_vs_N,XX_SF,0.0N->490 ; 9.6N->647 ; 9.6N->692 ; 12.6N->715 ; 12.6N->650 ; 15.1N->697 ; 15.2N->653 ; 18.3N->672 ; 18.4N->677 kg/mu  (span +46%),info
+irrigation_gradient,SD_SF,seasonal irrigation 60.0-86.0 mm over 2-8 events,info
+irrigation_gradient,XX_IRR,seasonal irrigation 13.2-73.5 mm over 3-5 events,info
+irrigation_gradient,XX_SF,seasonal irrigation 33.9-97.8 mm over 1-6 events,info
+B1_vs_B2_confounded,SD_SF,"B2 plots received 8 events / 72.8-86.0 mm vs B1 5 events / 62.6-64.4 mm, so the B1-B2 contrast mixes N timing with +10..22 mm irrigation",warn
+no_initial_mineral_N,both sites,"soil nutrient sheets report no NO3-N / NH4-N; APSIM SoilN initial mineral N must be treated as a calibration parameter (prior 40-90 kg N/ha, 0-60 cm)",high
+obs_coverage,SD_DH997,5 plots x 12 dates = 60 records; plot-scale LAI/biomass NOT available (no measured density),info
+obs_coverage,SD_MY73,4 plots x 12 dates = 48 records; plot-scale LAI/biomass NOT available (no measured density),info
+obs_coverage,SD_SF,9 plots x 8 dates = 72 records; plot-scale LAI/biomass available,info
+obs_coverage,XX_IRR,5 plots x 14 dates = 70 records; plot-scale LAI/biomass NOT available (no measured density),info
+obs_coverage,XX_SF,9 plots x 14 dates = 126 records; plot-scale LAI/biomass available,info

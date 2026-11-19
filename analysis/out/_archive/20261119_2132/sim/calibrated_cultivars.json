@@ -1,0 +1,49 @@
+{
+  "乐农87": {
+    "phenology": {
+      "Phenology.Juvenile.Target.FixedValue": 284.9,
+      "Phenology.FlagLeafToFlowering.Target.FixedValue": 30.2,
+      "Phenology.FloweringToGrainFilling.Target.FixedValue": 242.1,
+      "Phenology.GrainFilling.Target.FixedValue": 677.2,
+      "Phenology.Maturing.Target.FixedValue": 38.8
+    },
+    "growth": {
+      "Leaf.Photosynthesis.RUE.FixedValue": 2.381,
+      "Grain.MaximumGrainsPerCob.FixedValue": 734.959,
+      "Grain.MaximumPotentialGrainSize.FixedValue": 0.235,
+      "Leaf.CohortParameters.MaxArea.LargestLeafPosition.RelativePositionOfLargestLeaf.FixedValue": 0.65,
+      "Leaf.CohortParameters.StructuralFraction.FixedValue": 0.827,
+      "Leaf.CohortParameters.SenescenceAcceleration.One.FixedValue": 0.33,
+      "Leaf.CohortParameters.MaxArea.Skewness.FixedValue": 0.001
+    },
+    "source": "hand-screened grid (SLW constraint), 2026-11-19"
+  },
+  "MY73": {
+    "phenology": {
+      "Phenology.Juvenile.Target.FixedValue": 164.7,
+      "Phenology.FlagLeafToFlowering.Target.FixedValue": 206.9,
+      "Phenology.FloweringToGrainFilling.Target.FixedValue": 166.6,
+      "Phenology.GrainFilling.Target.FixedValue": 668.7,
+      "Phenology.Maturing.Target.FixedValue": 71.4
+    },
+    "growth": {
+      "Leaf.Photosynthesis.RUE.FixedValue": 3.116,
+      "Grain.MaximumGrainsPerCob.FixedValue": 641.109,
+      "Grain.MaximumPotentialGrainSize.FixedValue": 0.226
+    }
+  },
+  "金华创826": {
+    "phenology": {
+      "Phenology.Juvenile.Target.FixedValue": 198.3,
+      "Phenology.FlagLeafToFlowering.Target.FixedValue": 203.6,
+      "Phenology.FloweringToGrainFilling.Target.FixedValue": 180.7,
+      "Phenology.GrainFilling.Target.FixedValue": 627.6,
+      "Phenology.Maturing.Target.FixedValue": 61.1
+    },
+    "growth": {
+      "Leaf.Photosynthesis.RUE.FixedValue": 2.879,
+      "Grain.MaximumGrainsPerCob.FixedValue": 1003.783,
+      "Grain.MaximumPotentialGrainSize.FixedValue": 0.231
+    }
+  }
+}

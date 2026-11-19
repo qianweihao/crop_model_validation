@@ -1,0 +1,27 @@
+[金华创826] 5 leaf observations, stages {'tassel': '2026-08-05', 'silking': '2026-08-10', 'harvest': '2026-10-04'}
+C:\ProgramData\miniconda3\Lib\site-packages\scipy\optimize\_differentialevolution.py:487: UserWarning: differential_evolution: the 'workers' keyword has overridden updating='immediate' to updating='deferred'
+  with DifferentialEvolutionSolver(func, bounds, args=args,
+  gen   1: best= 1457.02 (72s)
+  gen   2: best=  457.02 (144s)
+  gen   3: best=   44.52 (216s)
+  gen   4: best=  532.02 (288s)
+  gen   5: best=  119.52 (360s)
+  gen   6: best=  219.52 (432s)
+  gen   7: best=  207.02 (504s)
+  gen   8: best=  169.52 (577s)
+  gen   9: best=   69.52 (649s)
+  gen  10: best=   19.52 (720s)
+  gen  11: best=   44.52 (792s)
+  gen  12: best=   19.52 (863s)
+  gen  13: best=   19.52 (934s)
+  gen  14: best=    7.02 (1006s)
+  gen  15: best=   44.52 (1078s)
+  gen  16: best=   19.52 (1150s)
+  gen  17: best=   44.52 (1222s)
+[金华创826] score=7.0 leaf_RMSE=2.65 leaves
+    tassel   sim=2026-08-05 obs=2026-08-05 err=+0d
+    silking  sim=2026-08-10 obs=2026-08-10 err=+0d
+    harvest  sim=2026-10-04 obs=2026-10-04 err=+0d
+    {'Structure.zFinalLeafNumber.FixedValue': 22.8, 'Phenology.Juvenile.Target.FixedValue': 245.3, 'Phenology.FlagLeafToFlowering.Target.FixedValue': 91.0, 'Phenology.FloweringToGrainFilling.Target.FixedValue': 124.1, 'Phenology.GrainFilling.Target.FixedValue': 753.8, 'Phenology.Maturing.Target.FixedValue': 18.0}
+
+-> E:\work\zoomlion_crop_model\analysis\out\sim\phenology_calibrated.json
