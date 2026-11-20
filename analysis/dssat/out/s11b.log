@@ -1,0 +1,33 @@
+
+== 直接套 CERES 品种参数（AX 950 / ALL 900）==
+C:\Users\15945\AppData\Local\Temp\dssatbxqgvgft created.
+C:\Users\15945\AppData\Local\Temp\dssatbxqgvgft and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatdiefwosf created.
+C:\Users\15945\AppData\Local\Temp\dssatdiefwosf and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatuywlgdtr created.
+C:\Users\15945\AppData\Local\Temp\dssatuywlgdtr and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssathafvwdjm created.
+C:\Users\15945\AppData\Local\Temp\dssathafvwdjm and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatjitimaxy created.
+C:\Users\15945\AppData\Local\Temp\dssatjitimaxy and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatcxxumufg created.
+C:\Users\15945\AppData\Local\Temp\dssatcxxumufg and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatscdcyuih created.
+C:\Users\15945\AppData\Local\Temp\dssatscdcyuih and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatuwxslbwf created.
+C:\Users\15945\AppData\Local\Temp\dssatuwxslbwf and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatbnaihcwd created.
+C:\Users\15945\AppData\Local\Temp\dssatbnaihcwd and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatxzzcqdeo created.
+Traceback (most recent call last):
+  File "D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\src\s11_ixim_eval.py", line 135, in <module>
+    main()
+  File "D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\src\s11_ixim_eval.py", line 113, in main
+    rows.append(evaluate(trial, "IXIM", dict(AX=AX, ALL=ALL)))
+  File "D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\src\s11_ixim_eval.py", line 63, in evaluate
+    g, s = dc.run_plot(p, cultivar)
+  File "D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\src\dssat_common.py", line 679, in run_plot
+    dssat.run(soil, wth, crop, man, verbose=verbose)
+  File "C:\Users\15945\AppData\Roaming\Python\Python310\site-packages\DSSATTools\run.py", line 257, in run
+    assert excinfo.returncode == 0, 'DSSAT execution Failed, check '\
+AssertionError: DSSAT execution Failed, check C:\Users\15945\AppData\Local\Temp\dssatxzzcqdeo\ERROR.OUT file for a detailed report

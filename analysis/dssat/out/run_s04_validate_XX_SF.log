@@ -1,0 +1,26 @@
+trial XX_SF  (河南新乡 MY73)  scenario base (实测留苗密度)
+plot  n_rate  obs_yield  sim_yield  yield_bias  lai_rmse  lai_peak_obs  lai_peak_sim  plateau_days_sim  plateau_change_sim
+  CK       0    6326.68     6770.0        7.01      0.99          4.88          3.64                13               -0.85
+A1B1     144    8932.48     8749.0       -2.05      0.56          5.04          4.17                13               -1.00
+A1B2     144    8349.78     8989.0        7.66      0.70          5.38          4.31                14               -0.48
+A2B1     190    8390.16     9034.0        7.67      0.48          5.24          4.45                14                0.00
+A2B2     189    9217.57     9412.0        2.11      0.40          4.74          4.22                24               -0.50
+A3B1     228    8430.02     9091.0        7.84      0.47          5.37          4.44                15               -0.94
+A3B2     227    8991.69     9045.0        0.59      0.43          5.13          4.40                14               -1.18
+A4B1     276    8736.14     9328.0        6.77      0.46          5.63          4.63                17               -0.90
+A4B2     274    8666.48     9478.0        9.36      0.34          4.80          4.53                18               -0.92
+
+                metric      value
+       yield_rrmse_pct   6.287353
+        yield_bias_pct   5.069654
+              lai_rmse    0.53878
+     biomass_rrmse_pct  20.922396
+      biomass_bias_pct -19.212252
+                hi_obs   0.399194
+                hi_sim   0.516766
+      plateau_days_sim  15.777778
+      plateau_days_obs  10.111111
+plateau_change_sim_pct  -0.751607
+plateau_change_obs_pct    0.38692
+       anthesis_median 2026-08-10
+       maturity_median 2026-10-06

@@ -1,0 +1,32 @@
+<stdin>:37: UserWarning: Glyph 8722 (\N{MINUS SIGN}) missing from current font.
+<stdin>:39: UserWarning: Glyph 8722 (\N{MINUS SIGN}) missing from current font.
+C:\Users\15945\AppData\Local\Temp\dssatduynutdm created.
+C:\Users\15945\AppData\Local\Temp\dssatduynutdm and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatvmrxrmpp created.
+C:\Users\15945\AppData\Local\Temp\dssatvmrxrmpp and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatbltmuvit created.
+C:\Users\15945\AppData\Local\Temp\dssatbltmuvit and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatnrpzwjbv created.
+C:\Users\15945\AppData\Local\Temp\dssatnrpzwjbv and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatlepjssmb created.
+C:\Users\15945\AppData\Local\Temp\dssatlepjssmb and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssaturvjayvn created.
+C:\Users\15945\AppData\Local\Temp\dssaturvjayvn and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatyhnxaijc created.
+C:\Users\15945\AppData\Local\Temp\dssatyhnxaijc and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatidvpmtlu created.
+C:\Users\15945\AppData\Local\Temp\dssatidvpmtlu and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatgkbsdaqn created.
+C:\Users\15945\AppData\Local\Temp\dssatgkbsdaqn and its content has been removed.
+plot  y_obs  y_sim   b_obs   b_sim  leaves        ant
+  A1 6088.0 5552.0 12475.0 11355.0    20.0 2026-08-10
+A2B1 7579.0 8145.0 15035.0 15203.0    20.0 2026-08-10
+A2B2 7640.0 8388.0 15566.0 15497.0    20.0 2026-08-10
+A3B1 8333.0 8144.0 16601.0 15346.0    20.0 2026-08-10
+A3B2 8668.0 8502.0 17549.0 15806.0    20.0 2026-08-10
+A4B1 7824.0 8271.0 16243.0 15447.0    20.0 2026-08-10
+A4B2 8224.0 8441.0 17393.0 15523.0    20.0 2026-08-10
+A5B1 8226.0 8333.0 17462.0 15525.0    20.0 2026-08-10
+A5B2 8645.0 8537.0 18240.0 15616.0    20.0 2026-08-10
+产量 RRMSE 5.16%  偏差 +1.52%  生物量 -7.67%
+-> analysis/dssat/fig/SD_SF/diag/J_叶数20方案.png

@@ -40,6 +40,15 @@ def _fig(trial: str) -> Path:
 
 
 def obs_leaf_stages() -> pd.DataFrame:
+    """Prefer the raw field-book 可见叶 counts (same basis as L#SD)."""
+    try:
+        from s13_phint import RAW_VISIBLE
+        if dc.TRIAL in RAW_VISIBLE:
+            rows = [dict(stage=f"{v}可见叶", leaf=v, date=pd.Timestamp(d))
+                    for d, _, v in RAW_VISIBLE[dc.TRIAL]]
+            return pd.DataFrame(rows).sort_values(["leaf", "date"])
+    except Exception:
+        pass
     ph = pd.read_csv(dc.DATASET / "phenology.csv", parse_dates=["date"])
     site = str(dc.CFG.site)
     sub = ph[ph["site"] == site]
@@ -121,13 +130,13 @@ def _figure(daily: pd.DataFrame, obs: pd.DataFrame, tab: pd.DataFrame) -> None:
         ax.plot(g["date"], g["L#SD"], lw=1.2, alpha=0.75,
                 label="模拟" if plot == dc.ORDER[0] else None)
     ax.plot(obs["date"], obs.index, "o", ms=8, color="k", zorder=5,
-            label="实测（N 叶期）")
+            label="实测（可见叶）")
     for leaf, r in obs.iterrows():
         ax.annotate(f"{leaf}叶", (r["date"], leaf), xytext=(4, -11),
                     textcoords="offset points", fontsize=7.5, color="grey")
     ax.set_xlabel("日期 (2026)")
     ax.set_ylabel("叶片数")
-    ax.set_title("A  出叶进程：模拟 L#SD vs 实测 N 叶期")
+    ax.set_title("A  出叶进程：模拟 L#SD（可见叶）vs 实测可见叶数")
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%m-%d"))
     ax.tick_params(axis="x", rotation=45)
     ax.legend(frameon=False, loc="upper left")

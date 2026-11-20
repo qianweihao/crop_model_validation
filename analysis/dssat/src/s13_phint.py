@@ -24,7 +24,7 @@ import dssat_common as dc  # noqa: E402
 
 COMBOS = {
     "XX_SF": [(235, 50), (240, 51), (245, 52), (250, 53), (255, 54)],
-    "SD_SF": [(235, 60), (265, 60), (295, 60), (265, 55)],
+    "SD_SF": [(250, 51), (260, 53), (265, 55), (235, 60)],
 }
 
 # Raw field book (展开叶 / 可见叶), used as the reference for `L#SD`.

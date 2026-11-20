@@ -1,0 +1,35 @@
+trial XX_SF  scenario base  -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\XX_SF\bundle
+C:\Users\15945\AppData\Local\Temp\dssatdzmkaoyp created.
+C:\Users\15945\AppData\Local\Temp\dssatdzmkaoyp and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatoiuqltmu created.
+C:\Users\15945\AppData\Local\Temp\dssatoiuqltmu and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssathhbjxend created.
+C:\Users\15945\AppData\Local\Temp\dssathhbjxend and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatwyeuijck created.
+C:\Users\15945\AppData\Local\Temp\dssatwyeuijck and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatbmpsjwna created.
+C:\Users\15945\AppData\Local\Temp\dssatbmpsjwna and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatstcjalpe created.
+C:\Users\15945\AppData\Local\Temp\dssatstcjalpe and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatkvesnhvk created.
+C:\Users\15945\AppData\Local\Temp\dssatkvesnhvk and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatabfnloco created.
+C:\Users\15945\AppData\Local\Temp\dssatabfnloco and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatriuulhuv created.
+C:\Users\15945\AppData\Local\Temp\dssatriuulhuv and its content has been removed.
+  merged 9 soil profiles into SOIL.SOL
+  support: StandardData, Soil, Pest
+plot      mzx       soil  soil_ok  wsta_ok  cul_ok
+  CK   CK.MZX XXCK000000     True     True    True
+A1B1 A1B1.MZX XXA1B10000     True     True    True
+A1B2 A1B2.MZX XXA1B20000     True     True    True
+A2B1 A2B1.MZX XXA2B10000     True     True    True
+A2B2 A2B2.MZX XXA2B20000     True     True    True
+A3B1 A3B1.MZX XXA3B10000     True     True    True
+A3B2 A3B2.MZX XXA3B20000     True     True    True
+A4B1 A4B1.MZX XXA4B10000     True     True    True
+A4B2 A4B2.MZX XXA4B20000     True     True    True
+  9 soil profiles, weather XX012601.WTH, cultivar MY73 present
+
+bundle -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\XX_SF\bundle
+  run it with:  cd <bundle> && python run.py --exe <dscsm048.exe>

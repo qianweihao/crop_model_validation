@@ -1,0 +1,13 @@
+trial SD_SF  (山东德州 乐农87)  -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\SD_SF
+weather  130 days  2026-06-08..2026-10-15  rain 294.8 mm -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\SD_SF\weather
+plot    soil_id  layers  depth_cm  slll  sdul  ssat    bd  sloc_top  awc_mm  no3_kg  nh4_kg  density_plants_m2  n_rate
+  A1 SDA1000000       6       180 0.142 0.326 0.411 1.561     1.096  331.74   23.76    11.0              6.469       0
+A2B1 SDA2B10000       6       180 0.144 0.314 0.396 1.600     1.096  305.82   23.76    11.0              6.849     139
+A2B2 SDA2B20000       6       180 0.143 0.335 0.413 1.555     1.096  346.68   23.76    11.0              7.009     139
+A3B1 SDA3B10000       6       180 0.148 0.346 0.431 1.509     1.096  356.58   23.76    11.0              6.936     177
+A3B2 SDA3B20000       6       180 0.137 0.336 0.421 1.534     1.096  356.76   23.76    11.0              6.951     177
+A4B1 SDA4B10000       6       180 0.151 0.331 0.416 1.548     1.096  324.00   23.76    11.0              6.001     215
+A4B2 SDA4B20000       6       180 0.150 0.329 0.418 1.541     1.096  322.02   23.76    11.0              6.036     215
+A5B1 SDA5B10000       6       180 0.150 0.327 0.393 1.600     1.096  317.88   23.76    11.0              5.852     254
+A5B2 SDA5B20000       6       180 0.145 0.328 0.409 1.566     1.096  329.76   23.76    11.0              5.633     254
+management events: 98

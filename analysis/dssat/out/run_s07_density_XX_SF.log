@@ -1,0 +1,42 @@
+trial XX_SF  diag -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\XX_SF\diag
+
+[Q1] density: measured vs nominal
+C:\Users\15945\AppData\Local\Temp\dssatggarghft created.
+C:\Users\15945\AppData\Local\Temp\dssatggarghft and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatmbmdixak created.
+C:\Users\15945\AppData\Local\Temp\dssatmbmdixak and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatnheshxws created.
+C:\Users\15945\AppData\Local\Temp\dssatnheshxws and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatohdhoopu created.
+C:\Users\15945\AppData\Local\Temp\dssatohdhoopu and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatbbdbnlst created.
+C:\Users\15945\AppData\Local\Temp\dssatbbdbnlst and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssattydwipum created.
+C:\Users\15945\AppData\Local\Temp\dssattydwipum and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatwknnrwji created.
+C:\Users\15945\AppData\Local\Temp\dssatwknnrwji and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssathuhkhmxl created.
+C:\Users\15945\AppData\Local\Temp\dssathuhkhmxl and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatnmremnuj created.
+C:\Users\15945\AppData\Local\Temp\dssatnmremnuj and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssattbajczyu created.
+C:\Users\15945\AppData\Local\Temp\dssattbajczyu and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatylmglvfh created.
+C:\Users\15945\AppData\Local\Temp\dssatylmglvfh and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatrubtgrmf created.
+C:\Users\15945\AppData\Local\Temp\dssatrubtgrmf and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatcglanxmy created.
+C:\Users\15945\AppData\Local\Temp\dssatcglanxmy and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatudryzonf created.
+C:\Users\15945\AppData\Local\Temp\dssatudryzonf and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatvacfbfyx created.
+C:\Users\15945\AppData\Local\Temp\dssatvacfbfyx and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatkvyhvcpu created.
+C:\Users\15945\AppData\Local\Temp\dssatkvyhvcpu and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatdqbeyidx created.
+C:\Users\15945\AppData\Local\Temp\dssatdqbeyidx and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatfdetvjdl created.
+C:\Users\15945\AppData\Local\Temp\dssatfdetvjdl and its content has been removed.
+          yield_rrmse  yield_bias  lai_rmse  bio_bias  hi_mean  grains_per_ear  obs_hi
+measured        6.287       5.070     0.869   -19.212    0.517         464.630   0.399
+nominal         6.250       5.384     0.820   -18.634    0.514         446.351   0.399

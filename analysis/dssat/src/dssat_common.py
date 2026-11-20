@@ -24,7 +24,7 @@ from __future__ import annotations
 import os
 import re
 import shutil
-from contextlib import contextmanager
+from contextlib import contextmanager, nullcontext
 import tempfile
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
@@ -108,6 +108,7 @@ class TrialCfg:
     # trials without their own soil / management records borrow documented
     # stand-ins instead of silently falling back to DSSAT defaults
     display: str = ""                         # 报告/图标题里的中文名
+    species: dict = field(default_factory=dict)   # 物种级参数覆盖（PARSR 等）
     soil_source: tuple | None = None          # (trial_id, plot) to copy
     assumed_n: tuple | None = None            # ((date, kg N/ha), ...)
     assumed_irrig: tuple | None = None        # ((date, mm), ...)
@@ -125,7 +126,10 @@ TRIALS: dict[str, TrialCfg] = {
         sta=dict(INSI="DZ01", LAT=37.45, LON=116.35, ELEV=25.0,
                  TAV=13.6, AMP=14.8, REFHT=2.0, WNDHT=2.0, CO2=420.0,
                  DESC="Shandong Dezhou 2026"),
-        cultivar=dict(P1=235.0, P2=0.30, P5=880.0, G2=1300.0, G3=6.00, PHINT=60.0),
+        # 方案 A（2026-11 定稿）：最终叶数 20（实测 20）、ADAT 08-10、
+        # 产量偏差 +1.5% / 生物量 −7.7%（原 235/60/880/1300/6.0 只有 17 片叶、
+        # 生物量 −10.9%）。见 report/DSSAT_MY73_QUESTIONS.md 附五。
+        cultivar=dict(P1=250.0, P2=0.30, P5=880.0, G2=1300.0, G3=6.80, PHINT=51.0),
         nitrate_scale=0.24,
         sloc=(1.096, 0.85, 0.55, 0.35, 0.22, 0.12),
         control="A1",
@@ -148,6 +152,9 @@ TRIALS: dict[str, TrialCfg] = {
                  DESC="Henan Xinxiang 2026"),
         # Calibrated in s03_calibrate.py --trial XX_SF (see report).
         cultivar=dict(P1=235.0, P2=0.30, P5=900.0, G2=1300.0, G3=6.20, PHINT=50.0),
+        # PARSR 0.55（物种级，仅本试验）：生物量 −22.1% → −19.2%，
+        # 代价是产量 RRMSE 4.20% → 6.29%（+5.1%）。
+        species=dict(PARSR=0.55),
         nitrate_scale=0.55,
         sloc=(1.346, 1.05, 0.68, 0.43, 0.27, 0.15),
         sloc_scale=0.70,
@@ -175,6 +182,7 @@ TRIALS: dict[str, TrialCfg] = {
         # 品种参数沿用 XX_SF 的 MY73；只有 P5 按本站实测 R6（10-08）重定为 980
         # （新乡 900 对应 10-05）。
         cultivar=dict(P1=235.0, P2=0.30, P5=980.0, G2=1300.0, G3=6.20, PHINT=50.0),
+        species=dict(PARSR=0.55),
         nitrate_scale=0.24,
         sloc=(1.096, 0.85, 0.55, 0.35, 0.22, 0.12),
         sloc_scale=1.0,
@@ -656,15 +664,22 @@ def run_plot(plot: str, cultivar: dict | None = None, *,
     """
     soil = build_soil(plot, sloc_scale=sloc_scale)
     wth = build_weather()
-    crop = build_crop(cultivar, ecotype)
-    man = build_management(plot, soil, cultivar=cultivar,
-                          nitrate_scale=nitrate_scale, nitrogen=nitrogen,
-                          n_total_kg=n_total_kg, density=density)
-    if soil_n_output:
-        man.simulation_controls["NIOUT"] = "Y"
-
-    dssat = DSSAT()
-    dssat.run(soil, wth, crop, man, verbose=verbose)
+    # species-level overrides (PARSR ...) are per trial, and the patched SPE
+    # has to be in place *before* Crop() copies it into the run directory
+    # IXIM has its own SPE file, so the CERES-patched species copy would be
+    # wrong for it; the trial-level overrides are CERES-only.
+    sp = (dict(CFG.species)
+          if CFG and CFG.species and MODEL == "CERES" else {})
+    ctx = patch_species(**sp) if sp else nullcontext()
+    with ctx:
+        crop = build_crop(cultivar, ecotype)
+        man = build_management(plot, soil, cultivar=cultivar,
+                              nitrate_scale=nitrate_scale, nitrogen=nitrogen,
+                              n_total_kg=n_total_kg, density=density)
+        if soil_n_output:
+            man.simulation_controls["NIOUT"] = "Y"
+        dssat = DSSAT()
+        dssat.run(soil, wth, crop, man, verbose=verbose)
     run_dir = Path(dssat._RUN_PATH)
     g = dssat.output["PlantGro"].copy()
     summary = _read_summary(run_dir / "Summary.OUT")

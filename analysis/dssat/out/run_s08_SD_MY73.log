@@ -1,0 +1,20 @@
+trial SD_MY73  scenario base  -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\SD_MY73\bundle
+C:\Users\15945\AppData\Local\Temp\dssatiypplswl created.
+C:\Users\15945\AppData\Local\Temp\dssatiypplswl and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatrtedzwjr created.
+C:\Users\15945\AppData\Local\Temp\dssatrtedzwjr and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatxvtbyfvm created.
+C:\Users\15945\AppData\Local\Temp\dssatxvtbyfvm and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatgmgynrqt created.
+C:\Users\15945\AppData\Local\Temp\dssatgmgynrqt and its content has been removed.
+  merged 4 soil profiles into SOIL.SOL
+  support: StandardData, Soil, Pest
+plot    mzx       soil  soil_ok  wsta_ok  cul_ok
+  W1 W1.MZX WFW1000000     True     True    True
+  W2 W2.MZX WFW2000000     True     True    True
+  W3 W3.MZX WFW3000000     True     True    True
+  W4 W4.MZX WFW4000000     True     True    True
+  4 soil profiles, weather WF012601.WTH, cultivar MY73 present
+
+bundle -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\SD_MY73\bundle
+  run it with:  cd <bundle> && python run.py --exe <dscsm048.exe>

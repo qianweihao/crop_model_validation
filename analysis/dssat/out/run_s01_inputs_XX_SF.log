@@ -1,0 +1,13 @@
+trial XX_SF  (河南新乡 MY73)  -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\XX_SF
+weather  130 days  2026-06-08..2026-10-15  rain 352.9 mm -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\XX_SF\weather
+plot    soil_id  layers  depth_cm  slll  sdul  ssat    bd  sloc_top  awc_mm  no3_kg  nh4_kg  density_plants_m2  n_rate
+  CK XXCK000000       6       180 0.144 0.214 0.316 1.600     0.942  125.82   54.45    11.0              7.844       0
+A1B1 XXA1B10000       6       180 0.135 0.281 0.342 1.600     0.942  261.90   54.45    11.0              7.508     144
+A1B2 XXA1B20000       6       180 0.130 0.260 0.366 1.600     0.942  233.46   54.45    11.0              8.126     144
+A2B1 XXA2B10000       6       180 0.126 0.272 0.391 1.600     0.942  263.34   54.45    11.0              8.066     190
+A2B2 XXA2B20000       6       180 0.128 0.273 0.303 1.600     0.942  259.92   54.45    11.0              8.009     189
+A3B1 XXA3B10000       6       180 0.133 0.265 0.336 1.600     0.942  237.60   54.45    11.0              7.933     228
+A3B2 XXA3B20000       6       180 0.122 0.308 0.451 1.454     0.942  334.26   54.45    11.0              7.937     227
+A4B1 XXA4B10000       6       180 0.130 0.300 0.420 1.538     0.942  307.26   54.45    11.0              8.126     276
+A4B2 XXA4B20000       6       180 0.134 0.277 0.363 1.600     0.942  256.50   54.45    11.0              7.867     274
+management events: 70
