@@ -64,9 +64,11 @@ def per_plot(daily, summ, obs, yld) -> pd.DataFrame:
             bio_bias=(sim_bio / obs_bio - 1) * 100 if obs_bio else np.nan,
             obs_hi=obs_y / obs_bio if obs_bio else np.nan,
             sim_hi=sim_y / sim_bio if sim_bio else np.nan,
-            lai_rmse=float(np.sqrt(np.mean((sim_lai - obs_lai) ** 2))),
+            lai_rmse=(float(np.sqrt(np.mean((sim_lai - obs_lai) ** 2)))
+                      if len(matched) else np.nan),
             lai_n=len(matched),
-            lai_peak_obs=float(obs_lai.max()), lai_peak_sim=float(g["LAID"].max()),
+            lai_peak_obs=float(obs_lai.max()) if len(obs_lai) else np.nan,
+            lai_peak_sim=float(g["LAID"].max()),
             plateau_days_sim=sim_p["span_days"],
             plateau_change_sim=sim_p["change_pct"],
             plateau_days_obs=obs_p["span_days"],
@@ -84,9 +86,12 @@ def per_plot(daily, summ, obs, yld) -> pd.DataFrame:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--trial", default="SD_SF", choices=list(dc.TRIALS))
+    ap.add_argument("--scenario", default="base", choices=list(dc.SCENARIOS))
     args = ap.parse_args()
     dc.set_trial(args.trial)
-    print(f"trial {dc.TRIAL}  ({dc.CFG.site} {dc.CFG.variety})")
+    dc.set_scenario(args.scenario)
+    print(f"trial {dc.TRIAL}  ({dc.CFG.site} {dc.CFG.variety})  "
+          f"scenario {dc.SCENARIO} ({dc.SCEN_LABEL})")
 
     daily, summ, obs, yld = load()
     val = per_plot(daily, summ, obs, yld)
@@ -98,7 +103,8 @@ def main() -> None:
         dict(metric="yield_rrmse_pct",
              value=float(np.sqrt(np.mean((s - o) ** 2)) / o.mean() * 100)),
         dict(metric="yield_bias_pct", value=float(s.sum() / o.sum() * 100 - 100)),
-        dict(metric="lai_rmse", value=float(val["lai_rmse"].mean())),
+        dict(metric="lai_rmse", value=float(np.nanmean(val["lai_rmse"]))
+             if val["lai_rmse"].notna().any() else np.nan),
         dict(metric="biomass_rrmse_pct",
              value=float(np.sqrt(np.mean((sb - ob) ** 2)) / ob.mean() * 100)),
         dict(metric="biomass_bias_pct", value=float(sb.sum() / ob.sum() * 100 - 100)),

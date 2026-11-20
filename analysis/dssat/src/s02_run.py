@@ -22,8 +22,8 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import dssat_common as dc  # noqa: E402
 
-KEEP = ["date", "plot", "DAP", "GSTD", "LAID", "LWAD", "SWAD", "GWAD", "CWAD",
-        "VWAD", "G#AD", "GWGD", "HIAD", "NSTD", "P#AD", "RDPD", "SLAD"]
+KEEP = ["date", "plot", "DAP", "GSTD", "L#SD", "LAID", "LWAD", "SWAD", "GWAD",
+        "CWAD", "VWAD", "G#AD", "GWGD", "HIAD", "NSTD", "P#AD", "RDPD", "SLAD"]
 
 
 def parse_args() -> argparse.Namespace:
@@ -33,6 +33,7 @@ def parse_args() -> argparse.Namespace:
                     help="JSON dict or k=v,k=v overrides, e.g. P1=235,P5=880")
     # default resolved after set_trial(): module defaults are bound at import,
     # i.e. before the second trial rebinds them.
+    ap.add_argument("--scenario", default="base", choices=list(dc.SCENARIOS))
     ap.add_argument("--nitrate-scale", type=float, default=None)
     return ap.parse_args()
 
@@ -40,7 +41,9 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     dc.set_trial(args.trial)
-    print(f"trial {dc.TRIAL}  ({dc.CFG.site} {dc.CFG.variety})  -> {dc.OUT}")
+    dc.set_scenario(args.scenario)
+    print(f"trial {dc.TRIAL}  ({dc.CFG.site} {dc.CFG.variety})  "
+          f"scenario {dc.SCENARIO} ({dc.SCEN_LABEL})  -> {dc.SIM}")
     if args.nitrate_scale is None:
         args.nitrate_scale = dc.DEFAULT_NITRATE_SCALE
     cultivar = dict(dc.DEFAULT_CULTIVAR)
@@ -56,8 +59,13 @@ def main() -> None:
     for plot in dc.ORDER:
         g, s = dc.run_plot(plot, cultivar, nitrate_scale=args.nitrate_scale, save=True)
         daily.append(g[[c for c in KEEP if c in g.columns]])
+        pl = dc.load_plots().loc[plot]
+        dcol = ("density_planted" if dc.DENSITY_MODE == "nominal"
+                else "density_measured")
+        if pd.isna(pl[dcol]):                 # no stand count
+            dcol = "density_planted"
         row = dict(plot=plot, n_rate=dc.N_RATE[plot],
-                   density=float(dc.load_plots().loc[plot, "density_measured"]))
+                   density=float(pl[dcol]))
         row.update({k: s.get(k) for k in
                     ["PDAT", "EDAT", "ADAT", "MDAT", "HDAT", "HWAM", "CWAM",
                      "LAIX", "HIAM", "G#AM", "GWUM", "NUCM", "NICM", "NMINC",

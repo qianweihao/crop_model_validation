@@ -1,0 +1,14 @@
+metric,value
+yield_rrmse_pct,18.58982576731166
+yield_bias_pct,-18.54091489690687
+lai_rmse,
+biomass_rrmse_pct,41.62871080396643
+biomass_bias_pct,-41.30765870953416
+hi_obs,0.3968055253331593
+hi_sim,0.5494426265875437
+plateau_days_sim,14.0
+plateau_days_obs,0.0
+plateau_change_sim_pct,0.4796163069544557
+plateau_change_obs_pct,
+anthesis_median,2026-08-07
+maturity_median,2026-10-08

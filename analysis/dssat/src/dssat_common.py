@@ -22,7 +22,9 @@ which raises ``WinError 1314`` unless the process holds
 from __future__ import annotations
 
 import os
+import re
 import shutil
+from contextlib import contextmanager
 import tempfile
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
@@ -103,11 +105,18 @@ class TrialCfg:
     vrname: str
     sloc_scale: float = 1.0
     notes: dict = field(default_factory=dict)
+    # trials without their own soil / management records borrow documented
+    # stand-ins instead of silently falling back to DSSAT defaults
+    display: str = ""                         # 报告/图标题里的中文名
+    soil_source: tuple | None = None          # (trial_id, plot) to copy
+    assumed_n: tuple | None = None            # ((date, kg N/ha), ...)
+    assumed_irrig: tuple | None = None        # ((date, mm), ...)
 
 
 TRIALS: dict[str, TrialCfg] = {
     "SD_SF": TrialCfg(
         name="SD_SF", site="山东德州", variety="乐农87", zone="dezhou",
+        display="德州水肥试验",
         plots=("A1", "A2B1", "A2B2", "A3B1", "A3B2", "A4B1", "A4B2", "A5B1", "A5B2"),
         n_rate=dict(zip(
             ("A1", "A2B1", "A2B2", "A3B1", "A3B2", "A4B1", "A4B2", "A5B1", "A5B2"),
@@ -128,6 +137,7 @@ TRIALS: dict[str, TrialCfg] = {
     ),
     "XX_SF": TrialCfg(
         name="XX_SF", site="河南新乡", variety="MY73", zone="xinxiang",
+        display="新乡水肥试验",
         plots=("CK", "A1B1", "A1B2", "A2B1", "A2B2", "A3B1", "A3B2", "A4B1", "A4B2"),
         n_rate=dict(zip(
             ("CK", "A1B1", "A1B2", "A2B1", "A2B2", "A3B1", "A3B2", "A4B1", "A4B2"),
@@ -147,6 +157,39 @@ TRIALS: dict[str, TrialCfg] = {
         obs_maturity=pd.Timestamp("2026-10-05"),
         soil_prefix="XX", description="Xinxiang", vrname="MY73",
         notes=dict(obs_maturity="实测无成熟期，按末次观测 10-04 推定为 10-05"),
+    ),
+    # ------------------------------------------------------------------
+    # 山东潍坊 品种展示（MY73），只有生物量/产量/生育期，没有 LAI、土壤、
+    # 施肥和灌溉记录。品种参数沿用 XX_SF 标定的 MY73，土壤借 SD_SF 的
+    # A3B1 剖面，施肥与灌溉按下表假设（见 report/DSSAT_PARAMETERS_SD_MY73.md）。
+    # ------------------------------------------------------------------
+    "SD_MY73": TrialCfg(
+        name="SD_MY73", site="山东潍坊", variety="MY73", zone="dezhou",
+        display="潍坊品种展示",
+        plots=("W1", "W2", "W3", "W4"),
+        n_rate={p: 270 for p in ("W1", "W2", "W3", "W4")},
+        sow=datetime(2026, 6, 16), sim_start=datetime(2026, 6, 8),
+        sta=dict(INSI="WF01", LAT=36.71, LON=119.10, ELEV=30.0,
+                 TAV=13.2, AMP=14.6, REFHT=2.0, WNDHT=2.0, CO2=420.0,
+                 DESC="Shandong Weifang 2026"),
+        # 品种参数沿用 XX_SF 的 MY73；只有 P5 按本站实测 R6（10-08）重定为 980
+        # （新乡 900 对应 10-05）。
+        cultivar=dict(P1=235.0, P2=0.30, P5=980.0, G2=1300.0, G3=6.20, PHINT=50.0),
+        nitrate_scale=0.24,
+        sloc=(1.096, 0.85, 0.55, 0.35, 0.22, 0.12),
+        sloc_scale=1.0,
+        control="W1",
+        obs_anthesis=pd.Timestamp("2026-08-08"),
+        obs_maturity=pd.Timestamp("2026-10-08"),
+        soil_prefix="WF", description="Weifang", vrname="MY73",
+        soil_source=("SD_SF", "A3B1"),
+        assumed_n=(("2026-06-16", 108.0), ("2026-07-05", 81.0),
+                   ("2026-07-25", 54.0), ("2026-08-05", 27.0)),
+        assumed_irrig=(("2026-07-16", 25.0), ("2026-07-28", 25.0),
+                       ("2026-08-05", 25.0), ("2026-08-21", 25.0)),
+        notes=dict(management="无施肥/灌溉记录，按 270 kg N/ha + 100 mm 假设",
+                   soil="无土壤剖面，借用 SD_SF A3B1",
+                   lai="无 LAI 观测"),
     ),
 }
 
@@ -178,12 +221,31 @@ SOIL = OUT / "soil"
 MGMT = OUT / "mgmt"
 FIG = BASE / "fig"
 
+# --------------------------------------------------------------------------
+# scenarios
+# --------------------------------------------------------------------------
+# "base"    measured plant stand  -> out/<trial>/sim,          figures D1..D5
+# "nominal" planting density      -> out/<trial>/sim_nominal,  figures N1..N5
+# The figure prefixes deliberately avoid C/L (APSIM, analysis/out/fig).
+SCENARIOS = {
+    "base": dict(subdir="sim", prefix="D", density="measured",
+                 mgmt="mgmt", label="实测留苗密度", short="实测密度"),
+    "nominal": dict(subdir="sim_nominal", prefix="N", density="nominal",
+                    mgmt="mgmt_nominal", label="额定播种密度", short="额定密度"),
+}
+DISPLAY = ""              # 试验中文名（set_trial 时绑定）
+SCENARIO = "base"
+PREFIX = "D"
+SCEN_LABEL = "实测留苗密度"
+SCEN_SHORT = "实测密度"
+DENSITY_MODE = "measured"
+
 
 def set_trial(name: str) -> TrialCfg:
     """Activate a trial: rebinds paths and every parameter used downstream."""
     global TRIAL, ORDER, N_RATE, SOW_DATE, SIM_START, STA, DEFAULT_CULTIVAR
     global SLOC_PROFILE, SLOC_SCALE, DEFAULT_NITRATE_SCALE, CONTROL_PLOT, OBS_ANTHESIS
-    global OBS_MATURITY, SOIL_PREFIX, SITE_DESC, VRNAME, CFG
+    global OBS_MATURITY, SOIL_PREFIX, SITE_DESC, VRNAME, CFG, DISPLAY
     global OUT, SIM, WTH, SOIL, MGMT, FIG
 
     if name not in TRIALS:
@@ -206,13 +268,33 @@ def set_trial(name: str) -> TrialCfg:
     SOIL_PREFIX = cfg.soil_prefix
     SITE_DESC = cfg.description
     VRNAME = cfg.vrname
+    DISPLAY = cfg.display or cfg.name
 
     OUT = BASE / "out" / TRIAL
     SIM, WTH, SOIL, MGMT = OUT / "sim", OUT / "weather", OUT / "soil", OUT / "mgmt"
     FIG = BASE / "fig" / TRIAL
     for d in (SIM, WTH, SOIL, MGMT, FIG):
         d.mkdir(parents=True, exist_ok=True)
+    set_scenario("base")
     return cfg
+
+
+def set_scenario(name: str) -> dict:
+    """Switch between the measured-stand and the nominal-density run."""
+    global SCENARIO, SIM, MGMT, PREFIX, SCEN_LABEL, SCEN_SHORT, DENSITY_MODE
+    if name not in SCENARIOS:
+        raise SystemExit(f"unknown scenario {name!r}; choose from {list(SCENARIOS)}")
+    scen = SCENARIOS[name]
+    SCENARIO = name
+    SIM = OUT / scen["subdir"]
+    MGMT = OUT / scen["mgmt"]          # keep the .MZX audit trail per scenario
+    PREFIX = scen["prefix"]
+    SCEN_LABEL = scen["label"]
+    SCEN_SHORT = scen["short"]
+    DENSITY_MODE = scen["density"]
+    for d in (SIM, MGMT):
+        d.mkdir(parents=True, exist_ok=True)
+    return scen
 
 
 set_trial("SD_SF")
@@ -230,7 +312,9 @@ def load_plots() -> pd.DataFrame:
 def load_obs() -> pd.DataFrame:
     o = pd.read_csv(DATASET / "obs_plant.csv", parse_dates=["date"])
     o = o[o["trial_id"] == TRIAL].copy()
-    dens = load_plots()["density_measured"].reindex(o["plot"]).values
+    p = load_plots()
+    # no stand count (SD_MY73) -> fall back to the seed rate, same rule as PPOP
+    dens = p["density_measured"].fillna(p["density_planted"]).reindex(o["plot"]).values
     o["bio_kg_ha"] = o["total_dw"] * dens / PLANTS_PER_MU * 10.0
     return o
 
@@ -246,6 +330,14 @@ def load_schedule() -> tuple[pd.DataFrame, pd.DataFrame]:
     fert = fert[(fert["trial_id"] == TRIAL) & fert["n_kg_ha"].notna()
                 & (fert["n_kg_ha"] > 0)]
     irrig = irrig[(irrig["trial_id"] == TRIAL) & (irrig["mm"] > 0)]
+    if fert.empty and CFG is not None and CFG.assumed_n:
+        fert = pd.DataFrame(
+            [dict(trial_id=TRIAL, plot=p, date=pd.Timestamp(d), n_kg_ha=k)
+             for p in ORDER for d, k in CFG.assumed_n])
+    if irrig.empty and CFG is not None and CFG.assumed_irrig:
+        irrig = pd.DataFrame(
+            [dict(trial_id=TRIAL, plot=p, date=pd.Timestamp(d), mm=m)
+             for p in ORDER for d, m in CFG.assumed_irrig])
     return fert, irrig
 
 
@@ -281,7 +373,10 @@ def build_weather() -> Weather:
 def build_soil(plot: str, sloc_scale: float | None = None) -> SoilProfile:
     """Six-layer profile: measured DUL/SAT, Saxton-Rawls LL15, measured texture."""
     tab = pd.read_csv(DATASET / "soil_profile.csv")
-    tab = tab[(tab["trial_id"] == TRIAL) & (tab["plot"] == plot)].sort_values("layer")
+    src_trial, src_plot = (CFG.soil_source if CFG and CFG.soil_source
+                           else (TRIAL, plot))
+    tab = tab[(tab["trial_id"] == src_trial) & (tab["plot"] == src_plot)]
+    tab = tab.sort_values("layer")
     assert len(tab) == 6, f"{plot}: expected 6 layers, got {len(tab)}"
     if sloc_scale is None:
         sloc_scale = SLOC_SCALE
@@ -328,7 +423,10 @@ def build_soil(plot: str, sloc_scale: float | None = None) -> SoilProfile:
 def _initial_conditions(plot: str, soil: SoilProfile, ic_date: datetime):
     """Initial water at DUL and the calibrated nitrate/ammonium profile."""
     tab = pd.read_csv(DATASET / "soil_profile.csv")
-    tab = tab[(tab["trial_id"] == TRIAL) & (tab["plot"] == plot)].sort_values("layer")
+    src_trial, src_plot = (CFG.soil_source if CFG and CFG.soil_source
+                           else (TRIAL, plot))
+    tab = tab[(tab["trial_id"] == src_trial) & (tab["plot"] == src_plot)]
+    tab = tab.sort_values("layer")
     rows = []
     prev = 0
     for i, row in enumerate(tab.reset_index(drop=True).itertuples()):
@@ -345,13 +443,22 @@ def _initial_conditions(plot: str, soil: SoilProfile, ic_date: datetime):
 
 def build_management(plot: str, soil: SoilProfile, *, cultivar: dict | None = None,
                      nitrate_scale: float | None = None, nitrogen: bool = True,
-                     n_total_kg: float | None = None) -> Management:
+                     n_total_kg: float | None = None,
+                     density: float | None = None) -> Management:
     """One treatment: plot density, reported irrigation, reported urea N."""
     from DSSATTools.base.sections import TabularSubsection
 
     if nitrate_scale is None:
         nitrate_scale = DEFAULT_NITRATE_SCALE
-    dens = float(load_plots().loc[plot, "density_measured"]) / PLANTS_PER_MU
+    if density is None:                       # plants/m2
+        row = load_plots().loc[plot]
+        col = ("density_planted" if DENSITY_MODE == "nominal"
+               else "density_measured")
+        if pd.isna(row[col]):                 # no stand count: use the seed rate
+            col = "density_planted"
+        dens = float(row[col]) / PLANTS_PER_MU
+    else:
+        dens = float(density)
     man = Management(planting_date=SOW_DATE, sim_start=SIM_START,
                      irrigation="R", fertilization="R", harvest="M",
                      organic_matter="G")
@@ -438,16 +545,70 @@ def build_management(plot: str, soil: SoilProfile, *, cultivar: dict | None = No
 
 
 CULTIVAR_KEYS = ["P1", "P2", "P5", "G2", "G3", "PHINT"]
+# IXIM-Maize (MZIXM048) adds two cultivar-level leaf parameters that CERES
+# does not have: AX (cm2 of the largest leaf) and ALL (leaf longevity, GDD).
+IXIM_KEYS = CULTIVAR_KEYS + ["AX", "ALL"]
+MODEL = "CERES"
+DEFAULT_AX = 650.0        # cm2/leaf, largest leaf
+DEFAULT_ALL = 800.0       # GDD, leaf longevity
+# DSSATTools hard-codes the maize model and a 6-parameter cultivar record;
+# both have to be widened for the IXIM cultivar file (P1..PHINT + AX + ALL).
+_IXIM_HDR = "A5,1X,1X,A16,1X,A5,1X,A6,8(1X,A5)"
+# AX is F5.1 in the stock file (max 999.9); MY73 needs ~1180 cm2 so the two
+# leaf fields are widened to F6.1.  DSSAT reads the wider record fine.
+_IXIM_ROW = ("A6,1X,A16,1X,A5,1X,A6,1X,F5.1,1X,F5.3,2(1X,F5.0),"
+             "2(1X,F5.2),2(1X,F6.1)")
 
 
-def build_crop(cultivar: dict | None = None) -> Crop:
-    crop = Crop("maize", "990002")
+def set_model(name: str) -> str:
+    """CERES (default) or IXIM."""
+    global MODEL
+    MODEL = name.upper()
+    assert MODEL in ("CERES", "IXIM"), MODEL
+    return MODEL
+
+
+def build_crop(cultivar: dict | None = None,
+               ecotype: dict | None = None) -> Crop:
+    if MODEL == "IXIM":
+        from DSSATTools.base import sections as _sec
+        import DSSATTools.crop as _dcrop
+        keep = (_sec.CULTIVAR_HEADER_FMT["Maize"],
+                _sec.CULTIVAR_ROWS_FMT["Maize"],
+                _dcrop.CROPS_MODULES["Maize"])
+        _sec.CULTIVAR_HEADER_FMT["Maize"] = _IXIM_HDR
+        _sec.CULTIVAR_ROWS_FMT["Maize"] = _IXIM_ROW
+        _dcrop.CROPS_MODULES["Maize"] = "MZIXM"
+        try:
+            crop = _dcrop.Crop("maize", "990002")
+        finally:
+            (_sec.CULTIVAR_HEADER_FMT["Maize"],
+             _sec.CULTIVAR_ROWS_FMT["Maize"],
+             _dcrop.CROPS_MODULES["Maize"]) = keep
+        # Section._row_writer looks the format up *at call time*, so it has to
+        # be rebound or AX/ALL are silently dropped when the CUL is written.
+        import fortranformat as _ff
+        crop.cultivar._row_writer = (
+            lambda x: _ff.FortranRecordWriter(_IXIM_ROW).write(x))
+    else:
+        crop = Crop("maize", "990002")
+    if _SPECIES_PATCH:
+        crop._spe_path = str(PATCHED_SPECIES)
     pars = dict(DEFAULT_CULTIVAR)
+    if MODEL == "IXIM":
+        pars.setdefault("AX", DEFAULT_AX)
+        pars.setdefault("ALL", DEFAULT_ALL)
     if cultivar:
-        pars.update({k: v for k, v in cultivar.items() if k in CULTIVAR_KEYS})
+        keys = IXIM_KEYS if MODEL == "IXIM" else CULTIVAR_KEYS
+        pars.update({k: v for k, v in cultivar.items() if k in keys})
     for k, v in pars.items():
-        crop.cultivar[k] = float(v)
+        if k in crop.cultivar:
+            crop.cultivar[k] = float(v)
     crop.cultivar["VRNAME.........."] = VRNAME
+    if ecotype and hasattr(crop, "ecotype"):
+        for k, v in ecotype.items():
+            if k in crop.ecotype:
+                crop.ecotype[k] = float(v)
     return crop
 
 
@@ -484,8 +645,10 @@ def _read_summary(path: Path) -> dict:
 def run_plot(plot: str, cultivar: dict | None = None, *,
              nitrate_scale: float | None = None, nitrogen: bool = True,
              n_total_kg: float | None = None, soil_n_output: bool = False,
-             sloc_scale: float | None = None,
-             save: bool = False, verbose: bool = False) -> tuple[pd.DataFrame, dict]:
+             sloc_scale: float | None = None, density: float | None = None,
+             ecotype: dict | None = None,
+             save: bool = False, keep_dir: Path | None = None,
+             verbose: bool = False) -> tuple[pd.DataFrame, dict]:
     """Run one plot and return (daily PlantGro, run summary).
 
     When ``save`` is set the DSSAT inputs/outputs are copied to
@@ -493,10 +656,10 @@ def run_plot(plot: str, cultivar: dict | None = None, *,
     """
     soil = build_soil(plot, sloc_scale=sloc_scale)
     wth = build_weather()
-    crop = build_crop(cultivar)
+    crop = build_crop(cultivar, ecotype)
     man = build_management(plot, soil, cultivar=cultivar,
                           nitrate_scale=nitrate_scale, nitrogen=nitrogen,
-                          n_total_kg=n_total_kg)
+                          n_total_kg=n_total_kg, density=density)
     if soil_n_output:
         man.simulation_controls["NIOUT"] = "Y"
 
@@ -512,6 +675,13 @@ def run_plot(plot: str, cultivar: dict | None = None, *,
         sn["date"] = pd.to_datetime(sn["date"])
         summary = dict(summary, soil_ni=sn)
 
+    if keep_dir is not None:
+        # keep the *whole* run directory: .MZX + genotype files + SOIL.SOL +
+        # Weather + DSSATPRO.V48, i.e. everything a third party needs to rerun
+        dest = Path(keep_dir)
+        if dest.exists():
+            shutil.rmtree(dest)
+        shutil.copytree(run_dir, dest)
     if save:
         keep_out = {"PlantGro.OUT", "Summary.OUT", "SoilWat.OUT",
                     "OVERVIEW.OUT", "WARNING.OUT"}
@@ -571,3 +741,67 @@ def plateau_metrics(dates: pd.Series, lai: pd.Series, thresh: float = 0.95):
         start=start, end=end,
         change_pct=(win.iloc[-1] / win.iloc[0] - 1) * 100,
     )
+
+
+# --------------------------------------------------------------------------
+# species-file patching (diagnostics only)
+# --------------------------------------------------------------------------
+SPECIES_FILE = Path(_DSSAT_TMP) / "Genotype" / "MZCER048.SPE"
+# Crop.write() copies the *package* static file into the run directory, so a
+# patched copy has to be handed to the Crop object through _spe_path.
+PATCHED_SPECIES = Path(_DSSAT_TMP) / "MZCER048_patched.SPE"
+_SPECIES_PATCH: dict = {}
+
+
+def _species_text(overrides: dict) -> str:
+    text = SPECIES_FILE.read_text(encoding="cp437")
+    for key, val in overrides.items():
+        pat = re.compile(rf"^(\s*{key}\s+)([-+0-9.]+)", re.M)
+        if not pat.search(text):
+            raise KeyError(f"species coefficient {key} not found")
+        text = pat.sub(lambda m: f"{m.group(1)}{val}", text, count=1)
+    return text
+
+
+@contextmanager
+def patch_species(**overrides):
+    """Temporarily overwrite species coefficients for the next runs."""
+    _SPECIES_PATCH.clear()
+    _SPECIES_PATCH.update(overrides)
+    PATCHED_SPECIES.write_text(_species_text(overrides), encoding="cp437")
+    try:
+        yield
+    finally:
+        _SPECIES_PATCH.clear()
+
+
+# --------------------------------------------------------------------------
+# experiment metrics
+# --------------------------------------------------------------------------
+def plot_metrics(g: pd.DataFrame, s: dict, density: float) -> dict:
+    """Season metrics used by the diagnostic experiments (plants/m2 given)."""
+    g = g.sort_values("date")
+    adat = dssat_date(s.get("ADAT"))
+    mat = g.iloc[-1]
+    lai_peak = float(g["LAID"].max())
+    bio_ant = np.nan
+    if adat is not None:
+        near = g[g["date"] <= adat]
+        if len(near):
+            bio_ant = float(near["CWAD"].iloc[-1])
+    out = dict(
+        density=density,
+        lai_peak=lai_peak,
+        la_per_plant=lai_peak / density,
+        bio_anthesis=bio_ant,
+        bio_final=float(mat["CWAD"]),
+        yield_kg=float(mat["GWAD"]),
+        hi=float(mat["HIAD"]),
+        grains_m2=float(mat["G#AD"]),
+        grain_w_mg=float(mat["GWGD"]),   # DSSAT GWGD is already mg/grain
+        anthesis=adat,
+        maturity=dssat_date(s.get("MDAT")),
+    )
+    out["grains_per_ear"] = (out["grains_m2"] / density
+                             if density else np.nan)
+    return out

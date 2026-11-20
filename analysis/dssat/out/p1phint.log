@@ -1,0 +1,44 @@
+== XX_SF
+C:\Users\15945\AppData\Local\Temp\dssatqrsgxpbf created.
+C:\Users\15945\AppData\Local\Temp\dssatqrsgxpbf and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatxksslijv created.
+C:\Users\15945\AppData\Local\Temp\dssatxksslijv and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatleovekzo created.
+C:\Users\15945\AppData\Local\Temp\dssatleovekzo and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatysdfuzfb created.
+C:\Users\15945\AppData\Local\Temp\dssatysdfuzfb and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatgsysycyq created.
+C:\Users\15945\AppData\Local\Temp\dssatgsysycyq and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatyeeyjnkp created.
+C:\Users\15945\AppData\Local\Temp\dssatyeeyjnkp and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatbrbqefxr created.
+C:\Users\15945\AppData\Local\Temp\dssatbrbqefxr and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatmaldozgz created.
+C:\Users\15945\AppData\Local\Temp\dssatmaldozgz and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatsvjnrmbc created.
+C:\Users\15945\AppData\Local\Temp\dssatsvjnrmbc and its content has been removed.
+Traceback (most recent call last):
+  File "<stdin>", line 65, in <module>
+  File "<stdin>", line 51, in run
+  File "<__array_function__ internals>", line 180, in nanmedian
+  File "C:\Program Files\Python310\lib\site-packages\numpy\lib\nanfunctions.py", line 1218, in nanmedian
+    r, k = function_base._ureduce(a, func=_nanmedian, axis=axis, out=out,
+  File "C:\Program Files\Python310\lib\site-packages\numpy\lib\function_base.py", line 3702, in _ureduce
+    r = func(a, **kwargs)
+  File "C:\Program Files\Python310\lib\site-packages\numpy\lib\nanfunctions.py", line 1086, in _nanmedian
+    return _nanmedian1d(part, overwrite_input)
+  File "C:\Program Files\Python310\lib\site-packages\numpy\lib\nanfunctions.py", line 1073, in _nanmedian1d
+    return np.median(arr1d_parsed, overwrite_input=overwrite_input)
+  File "<__array_function__ internals>", line 180, in median
+  File "C:\Program Files\Python310\lib\site-packages\numpy\lib\function_base.py", line 3793, in median
+    r, k = _ureduce(a, func=_median, axis=axis, out=out,
+  File "C:\Program Files\Python310\lib\site-packages\numpy\lib\function_base.py", line 3702, in _ureduce
+    r = func(a, **kwargs)
+  File "C:\Program Files\Python310\lib\site-packages\numpy\lib\function_base.py", line 3847, in _median
+    rout = mean(part[indexer], axis=axis, out=out)
+  File "<__array_function__ internals>", line 180, in mean
+  File "C:\Program Files\Python310\lib\site-packages\numpy\core\fromnumeric.py", line 3474, in mean
+    return _methods._mean(a, axis=axis, dtype=dtype,
+  File "C:\Program Files\Python310\lib\site-packages\numpy\core\_methods.py", line 191, in _mean
+    ret = ret / rcount
+TypeError: unsupported operand type(s) for /: 'Timestamp' and 'int'

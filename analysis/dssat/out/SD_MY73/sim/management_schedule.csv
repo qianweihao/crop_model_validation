@@ -1,0 +1,33 @@
+plot,date,op,amount,unit
+W1,2026-06-16,urea,108.0,kg N/ha
+W1,2026-07-05,urea,81.0,kg N/ha
+W1,2026-07-16,irrigation,25.0,mm
+W1,2026-07-25,urea,54.0,kg N/ha
+W1,2026-07-28,irrigation,25.0,mm
+W1,2026-08-05,urea,27.0,kg N/ha
+W1,2026-08-05,irrigation,25.0,mm
+W1,2026-08-21,irrigation,25.0,mm
+W2,2026-06-16,urea,108.0,kg N/ha
+W2,2026-07-05,urea,81.0,kg N/ha
+W2,2026-07-16,irrigation,25.0,mm
+W2,2026-07-25,urea,54.0,kg N/ha
+W2,2026-07-28,irrigation,25.0,mm
+W2,2026-08-05,urea,27.0,kg N/ha
+W2,2026-08-05,irrigation,25.0,mm
+W2,2026-08-21,irrigation,25.0,mm
+W3,2026-06-16,urea,108.0,kg N/ha
+W3,2026-07-05,urea,81.0,kg N/ha
+W3,2026-07-16,irrigation,25.0,mm
+W3,2026-07-25,urea,54.0,kg N/ha
+W3,2026-07-28,irrigation,25.0,mm
+W3,2026-08-05,urea,27.0,kg N/ha
+W3,2026-08-05,irrigation,25.0,mm
+W3,2026-08-21,irrigation,25.0,mm
+W4,2026-06-16,urea,108.0,kg N/ha
+W4,2026-07-05,urea,81.0,kg N/ha
+W4,2026-07-16,irrigation,25.0,mm
+W4,2026-07-25,urea,54.0,kg N/ha
+W4,2026-07-28,irrigation,25.0,mm
+W4,2026-08-05,urea,27.0,kg N/ha
+W4,2026-08-05,irrigation,25.0,mm
+W4,2026-08-21,irrigation,25.0,mm

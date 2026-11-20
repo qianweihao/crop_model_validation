@@ -1,0 +1,85 @@
+*EXP.DETAILS: XX012601.MZX DEFAULT
+
+*GENERAL
+@PEOPLE
+DSSATTools: A Python Library for DSSAT
+@ADDRESS
+https://github.com/daquinterop/Py_DSSATTools
+@SITE
+https://py-dssattools.readthedocs.io
+@ PAREA  PRNO  PLEN  PLDR  PLSP  PLAY HAREA  HRNO  HLEN  HARM.........
+    -99   -99   -99   -99   -99   -99     1   -99   -99 pping
+
+*TREATMENTS                        -------------FACTOR LEVELS------------
+@N R O C TNAME.................... CU FL SA IC MP MI MF MR MC MT ME MH SM
+ 1 1 0 0 DEFAULT TREATMENT          1  1  0  1  1  1  1  0  0  0  0  0  1
+
+*FIELDS
+@L ID_FIELD WSTA....  FLSA  FLOB  FLDT  FLDD  FLDS  FLST SLTX  SLDP  ID_SOIL    FLNAME
+ 1 DFTF0001 XX012601   -99     0 DR000     0     0 00000  -99   180  XXA2B10000                                 -99
+@L ...........XCRD ...........YCRD .....ELEV .............AREA .SLEN .FLWR .SLAS FLHST FHDUR
+ 1          113.93            35.3        75               -99   -99   -99   -99   -99   -99
+
+*CULTIVARS
+@C CR INGENO                     CNAME
+ 1 MZ 990002                      MY73
+
+*INITIAL CONDITIONS
+@C   PCR ICDAT  ICRT  ICND  ICRN  ICRE  ICWD ICRES ICREN ICREP ICRIP ICRID ICNAME
+ 1    MZ 26159     4     6  1.00  1.00   180     0  0.00  0.00     0   -99 XX_SF_
+@C  ICBL  SH2O  SNH4  SNO3
+ 1    15 0.273  1.28  6.35
+ 1    30 0.273  1.01  4.99
+ 1    60 0.273  0.60  2.95
+ 1    90 0.273  0.32  1.59
+ 1   120 0.273  0.16  0.79
+ 1   180 0.273  0.03  0.17
+
+*PLANTING DETAILS
+@P PDATE EDATE  PPOP  PPOE  PLME  PLDS  PLRS  PLRD  PLDP  PLWT  PAGE  PENV  PLPH  SPRL                        PLNAME
+ 1 26169   -99  8.25  8.25     S     R  60.0   -99   4.0   -99   -99   -99   -99   -99                           -99
+
+*IRRIGATION AND WATER MANAGEMENT
+@I  EFIR  IDEP  ITHR  IEPT  IOFF  IAME  IAMT IRNAME
+ 1     1    30    50   100 GS000 IR001    10 DFLTIR
+@I IDATE  IROP IRVAL
+ 1 26202 IR001    11
+ 1 26211 IR001    11
+ 1 26221 IR001    11
+
+*FERTILIZERS (INORGANIC)
+@F FDATE  FMCD  FACD  FDEP  FAMN  FAMP  FAMK  FAMC  FAMO  FOCD FERNAM
+ 1 26169 FE005 AP001     5     0     0     0     0     0   -99   NONE
+ 1 26162 FE005 AP001     5    56     0     0     0     0   -99   UREA
+ 1 26199 FE005 AP001     5    47     0     0     0     0   -99   UREA
+ 1 26211 FE005 AP001     5    56     0     0     0     0   -99   UREA
+ 1 26221 FE005 AP001     5    28     0     0     0     0   -99   UREA
+
+*HARVEST DETAILS
+@H HDATE  HSTG  HCOM HSIZE   HPC  HBPC HNAME
+ 1   -99   -99   -99   -99   -99   -99 DEFAU
+
+*SIMULATION CONTROLS
+@N GENERAL     NYERS NREPS START SDATE RSEED SNAME.................... SMODEL
+ 1 GE              1     1     S 26159  2409                   DEFAULT  MZCER
+@N OPTIONS     WATER NITRO SYMBI PHOSP POTAS DISES  CHEM  TILL   CO2
+ 1 OP              Y     Y     N     N     N     N     N     N     M
+@N METHODS     WTHER INCON LIGHT EVAPO INFIL PHOTO HYDRO NSWIT MESOM MESEV MESOL
+ 1 ME              M     M     E     R     S     C     R     1     G     S     2
+@N MANAGEMENT  PLANT IRRIG FERTI RESID HARVS
+ 1 MA              R     R     R     N     M
+@N OUTPUTS     FNAME OVVEW SUMRY FROPT GROUT CAOUT WAOUT NIOUT MIOUT DIOUT VBOSE CHOUT OPOUT FMOPT
+ 1 OU              N     Y     Y     1     Y     Y     Y     N     N     N     Y     N     N     A
+
+@  AUTOMATIC MANAGEMENT
+@N PLANTING    PFRST PLAST PH2OL PH2OU PH2OD PSTMX PSTMN
+ 1 PL          26166 26172    40   100    30    40    40
+@N IRRIGATION  IMDEP ITHRL ITHRU IROFF IMETH IRAMT IREFF
+ 1 IR             30    50   100 GS000 IR001    10     1
+@N NITROGEN    NMDEP NMTHR NAMNT NCODE NAOFF
+ 1 NI             30    50    25 FE001 GS000
+@N RESIDUES    RIPCN RTIME RIDEP
+ 1 RE            100     1    20
+@N HARVEST     HFRST HLAST HPCNP HPCNR
+ 1 HA            -99   -99   100     0
+

@@ -1,0 +1,26 @@
+trial SD_SF  (山东德州 乐农87)  scenario nominal (额定播种密度)
+plot  n_rate  obs_yield  sim_yield  yield_bias  lai_rmse  lai_peak_obs  lai_peak_sim  plateau_days_sim  plateau_change_sim
+  A1       0    6088.39     5316.0      -12.69      0.87          3.07          3.00                12               -1.38
+A2B1     139    7579.44     8315.0        9.70      0.65          3.35          3.63                14               -0.57
+A2B2     139    7639.96     8478.0       10.97      0.60          3.45          3.64                13                0.00
+A3B1     177    8332.56     8426.0        1.12      0.59          3.53          3.70                13               -0.56
+A3B2     177    8667.73     8708.0        0.46      0.59          3.55          3.74                14               -0.56
+A4B1     215    7824.47     8607.0       10.00      0.76          3.24          3.83                25               -0.27
+A4B2     215    8224.08     8840.0        7.49      0.72          3.41          3.79                26               -0.55
+A5B1     254    8226.45     8841.0        7.47      0.82          3.11          3.95                15                0.79
+A5B2     254    8645.14     9082.0        5.05      0.83          3.11          3.94                15                0.26
+
+                metric      value
+       yield_rrmse_pct   7.778216
+        yield_bias_pct   4.752015
+              lai_rmse   0.712526
+     biomass_rrmse_pct   5.793756
+      biomass_bias_pct  -4.265609
+                hi_obs   0.486491
+                hi_sim   0.529506
+      plateau_days_sim  16.333333
+      plateau_days_obs  13.444444
+plateau_change_sim_pct   -0.31644
+plateau_change_obs_pct  -2.239197
+       anthesis_median 2026-08-12
+       maturity_median 2026-10-08

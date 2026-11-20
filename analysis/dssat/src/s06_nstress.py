@@ -192,11 +192,12 @@ def draw(act: pd.DataFrame, rt: pd.DataFrame) -> Path:
     ax.set_title("D  胁迫起始越早，产量损失越大")
     ax.set_ylim(-2, gap.max() * 1.22)
 
-    fig.suptitle(f"D5  氮胁迫：并非只有 {dc.CONTROL_PLOT} 受限，"
+    fig.suptitle(f"{dc.PREFIX}5｜{dc.DISPLAY} {dc.CFG.variety}｜{dc.SCEN_LABEL}"
+                 f"　氮胁迫：并非只有 {dc.CONTROL_PLOT} 受限，"
                  f"而是胁迫起始时间随施氮量后移",
                  fontsize=13.5, y=0.995)
     fig.tight_layout()
-    p = dc.FIG / "D5_氮胁迫.png"
+    p = dc.FIG / f"{dc.PREFIX}5_氮胁迫.png"
     fig.savefig(p, bbox_inches="tight")
     plt.close(fig)
     return p
@@ -205,9 +206,12 @@ def draw(act: pd.DataFrame, rt: pd.DataFrame) -> Path:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--trial", default="SD_SF", choices=list(dc.TRIALS))
+    ap.add_argument("--scenario", default="base", choices=list(dc.SCENARIOS))
     args = ap.parse_args()
     dc.set_trial(args.trial)
-    print(f"trial {dc.TRIAL}  ({dc.CFG.site} {dc.CFG.variety})")
+    dc.set_scenario(args.scenario)
+    print(f"trial {dc.TRIAL}  ({dc.CFG.site} {dc.CFG.variety})  "
+          f"scenario {dc.SCENARIO} ({dc.SCEN_LABEL})")
 
     pot, act, rt = collect()
     pot.to_csv(dc.SIM / "nstress_potential_daily.csv", index=False)

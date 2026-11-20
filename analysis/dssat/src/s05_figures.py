@@ -57,13 +57,14 @@ def _finish(fig, axes, title, ylabel):
     for ax in axes.ravel():
         ax.xaxis.set_major_formatter(mdates.DateFormatter("%m-%d"))
         ax.tick_params(axis="x", rotation=45)
-    fig.suptitle(title, fontsize=13.5, y=0.995)
+    fig.suptitle(title, fontsize=12.5, y=0.995)
 
 
 def fig_lai(daily, obs, val) -> Path:
     fig, axes = _grid()
+    ymax = max(4.4, float(daily["LAID"].max()) * 1.12)
     for ax in axes.ravel():
-        ax.set_ylim(0, 4.4)
+        ax.set_ylim(0, ymax)
     for ax, plot in zip(axes.ravel(), dc.ORDER):
         g = daily[daily["plot"] == plot].sort_values("date")
         o = obs[obs["plot"] == plot].dropna(subset=["lai_plot"])
@@ -72,15 +73,20 @@ def fig_lai(daily, obs, val) -> Path:
                    label="平台期 (≥95% 峰值)")
         ax.plot(o["date"], o["lai_plot"], "o", ms=6.5, color=OBSCOL,
                 zorder=5, label="实测")
+        if o.empty:
+            ax.text(0.5, 0.06, "无 LAI 观测", transform=ax.transAxes,
+                    ha="center", fontsize=8.5, color="grey")
         ax.plot(g["date"], g["LAID"], lw=1.9, color=SIMCOL, label="模拟")
         ax.set_title(
             f"{plot}  N={dc.N_RATE[plot]}  "
             f"RMSE={val.loc[plot, 'lai_rmse']:.2f}  "
             f"平台 {p['span_days']}d ({p['change_pct']:+.1f}%)", fontsize=9)
     axes[0, 0].legend(frameon=False, loc="upper left", fontsize=7)
-    _finish(fig, axes, "D1  逐小区 LAI：实测 vs 模拟（阴影为模拟平台期）", "LAI")
+    _finish(fig, axes,
+            f"{dc.PREFIX}1｜{dc.DISPLAY} {dc.CFG.variety}｜{dc.SCEN_LABEL}"
+            f"　逐小区 LAI：实测 vs 模拟（阴影为模拟平台期）", "LAI")
     fig.tight_layout()
-    p = dc.FIG / "D1_LAI.png"
+    p = dc.FIG / f"{dc.PREFIX}1_LAI.png"
     fig.savefig(p, bbox_inches="tight")
     plt.close(fig)
     return p
@@ -88,8 +94,10 @@ def fig_lai(daily, obs, val) -> Path:
 
 def fig_biomass(daily, obs, val) -> Path:
     fig, axes = _grid()
+    # observed maxima reach ~25 t/ha in XX_SF, so the axis has to follow the data
+    bmax = max(float(daily["CWAD"].max()), float(obs["bio_kg_ha"].max()))
     for ax in axes.ravel():
-        ax.set_ylim(0, 20000)
+        ax.set_ylim(0, bmax * 1.08)
     for ax, plot in zip(axes.ravel(), dc.ORDER):
         g = daily[daily["plot"] == plot].sort_values("date")
         o = obs[(obs["plot"] == plot) & obs["bio_kg_ha"].notna()]
@@ -104,9 +112,11 @@ def fig_biomass(daily, obs, val) -> Path:
         ax.set_title(f"{plot}  N={dc.N_RATE[plot]}  "
                      f"偏差 {val.loc[plot, 'bio_bias']:+.0f}%", fontsize=9)
     axes[0, 0].legend(frameon=False, loc="upper left", fontsize=7)
-    _finish(fig, axes, "D2  逐小区地上部生物量：实测 vs 模拟", "生物量 (kg/ha)")
+    _finish(fig, axes,
+            f"{dc.PREFIX}2｜{dc.DISPLAY} {dc.CFG.variety}｜{dc.SCEN_LABEL}"
+            f"　逐小区地上部生物量：实测 vs 模拟", "生物量 (kg/ha)")
     fig.tight_layout()
-    p = dc.FIG / "D2_生物量.png"
+    p = dc.FIG / f"{dc.PREFIX}2_生物量.png"
     fig.savefig(p, bbox_inches="tight")
     plt.close(fig)
     return p
@@ -147,9 +157,10 @@ def fig_yield(val) -> Path:
     ax.set_ylabel("模拟产量 (kg/ha)")
     ax.set_title("1:1")
 
-    fig.suptitle("D3  逐小区产量：实测 vs 模拟", fontsize=13.5, y=1.01)
+    fig.suptitle(f"{dc.PREFIX}3｜{dc.DISPLAY} {dc.CFG.variety}｜{dc.SCEN_LABEL}"
+                 f"　逐小区产量：实测 vs 模拟", fontsize=12.5, y=1.01)
     fig.tight_layout()
-    p = dc.FIG / "D3_产量.png"
+    p = dc.FIG / f"{dc.PREFIX}3_产量.png"
     fig.savefig(p, bbox_inches="tight")
     plt.close(fig)
     return p
@@ -187,9 +198,10 @@ def fig_nitrogen(val) -> Path:
     axes[0].text(0.04, 0.94, f"A5B2/A1 产量比\n实测 {d_o:+.0f}%  模拟 {d_s:+.0f}%",
                  transform=axes[0].transAxes, va="top", fontsize=8.5,
                  bbox=dict(fc="white", ec="grey", alpha=0.9))
-    fig.suptitle("D4  氮素响应：模拟 vs 实测", fontsize=13.5, y=1.02)
+    fig.suptitle(f"{dc.PREFIX}4｜{dc.DISPLAY} {dc.CFG.variety}｜{dc.SCEN_LABEL}"
+                 f"　氮素响应：模拟 vs 实测", fontsize=12.5, y=1.02)
     fig.tight_layout()
-    p = dc.FIG / "D4_氮响应.png"
+    p = dc.FIG / f"{dc.PREFIX}4_氮响应.png"
     fig.savefig(p, bbox_inches="tight")
     plt.close(fig)
     return p
@@ -198,13 +210,21 @@ def fig_nitrogen(val) -> Path:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--trial", default="SD_SF", choices=list(dc.TRIALS))
+    ap.add_argument("--scenario", default="base", choices=list(dc.SCENARIOS))
     args = ap.parse_args()
     dc.set_trial(args.trial)
-    print(f"trial {dc.TRIAL}  ({dc.CFG.site} {dc.CFG.variety})")
+    dc.set_scenario(args.scenario)
+    print(f"trial {dc.TRIAL}  ({dc.CFG.site} {dc.CFG.variety})  "
+          f"scenario {dc.SCENARIO} ({dc.SCEN_LABEL})")
 
     daily, obs, val = load()
-    for p in (fig_lai(daily, obs, val), fig_biomass(daily, obs, val),
-              fig_yield(val), fig_nitrogen(val)):
+    made = [fig_lai(daily, obs, val), fig_biomass(daily, obs, val),
+            fig_yield(val)]
+    if val["n_rate"].nunique() >= 3:
+        made.append(fig_nitrogen(val))
+    else:
+        print("  skipped D4: only one nitrogen level in this trial")
+    for p in made:
         print(" ", p, f"({p.stat().st_size / 1024:.0f} kB)")
 
 

@@ -1,0 +1,12 @@
+C:\Users\15945\AppData\Local\Temp\dssatvultfsip created.
+C:\Users\15945\AppData\Local\Temp\dssatvultfsip and its content has been removed.
+AX  650  LAI 2.41  LA/plant 0.301  bio 11734  yield 6413  g/ear 725  gw 110
+C:\Users\15945\AppData\Local\Temp\dssatrrgzrnqw created.
+C:\Users\15945\AppData\Local\Temp\dssatrrgzrnqw and its content has been removed.
+AX  750  LAI 2.85  LA/plant 0.356  bio 12625  yield 6870  g/ear 735  gw 117
+C:\Users\15945\AppData\Local\Temp\dssatnpqjjfae created.
+C:\Users\15945\AppData\Local\Temp\dssatnpqjjfae and its content has been removed.
+AX  850  LAI 3.32  LA/plant 0.415  bio 13538  yield 7369  g/ear 693  gw 133
+C:\Users\15945\AppData\Local\Temp\dssatoiizwchf created.
+C:\Users\15945\AppData\Local\Temp\dssatoiizwchf and its content has been removed.
+AX  950  LAI 3.78  LA/plant 0.472  bio 14293  yield 7781  g/ear 666  gw 146

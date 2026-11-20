@@ -20,6 +20,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import dssat_common as dc  # noqa: E402
 
 
+def _density(plot: str) -> float:
+    """Stand count when it exists, otherwise the seed rate (SD_MY73)."""
+    p = dc.load_plots().loc[plot]
+    v = p["density_measured"]
+    if pd.isna(v):
+        v = p["density_planted"]
+    return float(v) / dc.PLANTS_PER_MU
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--trial", default="SD_SF", choices=list(dc.TRIALS))
@@ -52,8 +61,7 @@ def main() -> None:
                            [0] + sorted(soil.layers)[:-1])) * 10,
             no3_kg=dc.INIT_NO3_KG * dc.DEFAULT_NITRATE_SCALE,
             nh4_kg=dc.INIT_NH4_KG,
-            density_plants_m2=float(dc.load_plots().loc[plot, "density_measured"])
-            / dc.PLANTS_PER_MU,
+            density_plants_m2=_density(plot),
             n_rate=dc.N_RATE[plot],
         ))
     audit = pd.DataFrame(rows)
