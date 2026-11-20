@@ -1,0 +1,286 @@
+
+=== s01_inputs.py --trial SD_SF ===
+trial SD_SF  (山东德州 乐农87)  -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\SD_SF
+weather  130 days  2026-06-08..2026-10-15  rain 294.8 mm -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\SD_SF\weather
+plot    soil_id  layers  depth_cm  slll  sdul  ssat    bd  sloc_top  awc_mm  no3_kg  nh4_kg  density_plants_m2  n_rate
+  A1 SDA1000000       6       180 0.142 0.326 0.411 1.561     1.096  331.74   23.76    11.0              6.469       0
+A2B1 SDA2B10000       6       180 0.144 0.314 0.396 1.600     1.096  305.82   23.76    11.0              6.849     139
+A2B2 SDA2B20000       6       180 0.143 0.335 0.413 1.555     1.096  346.68   23.76    11.0              7.009     139
+A3B1 SDA3B10000       6       180 0.148 0.346 0.431 1.509     1.096  356.58   23.76    11.0              6.936     177
+A3B2 SDA3B20000       6       180 0.137 0.336 0.421 1.534     1.096  356.76   23.76    11.0              6.951     177
+A4B1 SDA4B10000       6       180 0.151 0.331 0.416 1.548     1.096  324.00   23.76    11.0              6.001     215
+A4B2 SDA4B20000       6       180 0.150 0.329 0.418 1.541     1.096  322.02   23.76    11.0              6.036     215
+A5B1 SDA5B10000       6       180 0.150 0.327 0.393 1.600     1.096  317.88   23.76    11.0              5.852     254
+A5B2 SDA5B20000       6       180 0.145 0.328 0.409 1.566     1.096  329.76   23.76    11.0              5.633     254
+management events: 98
+
+=== s02_run.py --trial SD_SF ===
+trial SD_SF  (山东德州 乐农87)  -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\SD_SF
+C:\Users\15945\AppData\Local\Temp\dssateiyvltps created.
+C:\Users\15945\AppData\Local\Temp\dssateiyvltps and its content has been removed.
+  A1  LAI 2.60  yield 5976  anthesis 08-12  maturity 10-08
+C:\Users\15945\AppData\Local\Temp\dssatufuifbfu created.
+C:\Users\15945\AppData\Local\Temp\dssatufuifbfu and its content has been removed.
+  A2B1  LAI 3.30  yield 7931  anthesis 08-12  maturity 10-08
+C:\Users\15945\AppData\Local\Temp\dssatztpwvktp created.
+C:\Users\15945\AppData\Local\Temp\dssatztpwvktp and its content has been removed.
+  A2B2  LAI 3.30  yield 8195  anthesis 08-12  maturity 10-08
+C:\Users\15945\AppData\Local\Temp\dssatuaudvnvm created.
+C:\Users\15945\AppData\Local\Temp\dssatuaudvnvm and its content has been removed.
+  A3B1  LAI 3.30  yield 8070  anthesis 08-12  maturity 10-08
+C:\Users\15945\AppData\Local\Temp\dssatlrtxtlpu created.
+C:\Users\15945\AppData\Local\Temp\dssatlrtxtlpu and its content has been removed.
+  A3B2  LAI 3.40  yield 8353  anthesis 08-12  maturity 10-08
+C:\Users\15945\AppData\Local\Temp\dssatwmkfupit created.
+C:\Users\15945\AppData\Local\Temp\dssatwmkfupit and its content has been removed.
+  A4B1  LAI 3.20  yield 8034  anthesis 08-12  maturity 10-08
+C:\Users\15945\AppData\Local\Temp\dssattmvktfxd created.
+C:\Users\15945\AppData\Local\Temp\dssattmvktfxd and its content has been removed.
+  A4B2  LAI 3.20  yield 8245  anthesis 08-12  maturity 10-08
+C:\Users\15945\AppData\Local\Temp\dssatgxhgndfh created.
+C:\Users\15945\AppData\Local\Temp\dssatgxhgndfh and its content has been removed.
+  A5B1  LAI 3.20  yield 8197  anthesis 08-12  maturity 10-08
+C:\Users\15945\AppData\Local\Temp\dssatzeaofrih created.
+C:\Users\15945\AppData\Local\Temp\dssatzeaofrih and its content has been removed.
+  A5B2  LAI 3.10  yield 8308  anthesis 08-12  maturity 10-08
+wrote 1017 daily rows -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\SD_SF\sim\dssat_daily.csv
+
+=== s04_validate.py --trial SD_SF ===
+trial SD_SF  (山东德州 乐农87)
+plot  n_rate  obs_yield  sim_yield  yield_bias  lai_rmse  lai_peak_obs  lai_peak_sim  plateau_days_sim  plateau_change_sim
+  A1       0    6088.39     5976.0       -1.85      0.76          3.07          2.62                13               -1.19
+A2B1     139    7579.44     7931.0        4.64      0.45          3.35          3.25                24               -0.32
+A2B2     139    7639.96     8195.0        7.26      0.44          3.45          3.30                25               -0.95
+A3B1     177    8332.56     8070.0       -3.15      0.44          3.53          3.35                19               -0.31
+A3B2     177    8667.73     8353.0       -3.63      0.44          3.55          3.36                18               -0.31
+A4B1     215    7824.47     8034.0        2.68      0.37          3.24          3.21                 8               -0.65
+A4B2     215    8224.08     8245.0        0.25      0.39          3.41          3.18                10                0.00
+A5B1     254    8226.45     8197.0       -0.36      0.33          3.11          3.19                 5               -0.33
+A5B2     254    8645.14     8308.0       -3.90      0.30          3.11          3.10                 5                0.00
+
+                metric      value
+       yield_rrmse_pct   3.698628
+        yield_bias_pct   0.113404
+              lai_rmse   0.435967
+     biomass_rrmse_pct  12.329826
+      biomass_bias_pct -10.905671
+                hi_obs   0.486491
+                hi_sim   0.545598
+      plateau_days_sim  14.111111
+      plateau_days_obs  13.444444
+plateau_change_sim_pct  -0.451186
+plateau_change_obs_pct  -2.239197
+       anthesis_median 2026-08-12
+       maturity_median 2026-10-08
+
+=== s05_figures.py --trial SD_SF ===
+trial SD_SF  (山东德州 乐农87)
+  D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\fig\SD_SF\D1_LAI.png (293 kB)
+  D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\fig\SD_SF\D2_生物量.png (257 kB)
+  D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\fig\SD_SF\D3_产量.png (115 kB)
+  D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\fig\SD_SF\D4_氮响应.png (151 kB)
+
+=== s06_nstress.py --trial SD_SF ===
+trial SD_SF  (山东德州 乐农87)
+C:\Users\15945\AppData\Local\Temp\dssatzfeefruj created.
+C:\Users\15945\AppData\Local\Temp\dssatzfeefruj and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatfesihmmp created.
+C:\Users\15945\AppData\Local\Temp\dssatfesihmmp and its content has been removed.
+  A1  N=  0  胁迫起始 07-29 (-14 d vs 吐丝)  产量差 31.3%
+C:\Users\15945\AppData\Local\Temp\dssatzfkszppk created.
+C:\Users\15945\AppData\Local\Temp\dssatzfkszppk and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssattyfvugop created.
+C:\Users\15945\AppData\Local\Temp\dssattyfvugop and its content has been removed.
+  A2B1  N=139  胁迫起始 08-04 (-8 d vs 吐丝)  产量差  9.9%
+C:\Users\15945\AppData\Local\Temp\dssatdopxwokg created.
+C:\Users\15945\AppData\Local\Temp\dssatdopxwokg and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatbqhpgxda created.
+C:\Users\15945\AppData\Local\Temp\dssatbqhpgxda and its content has been removed.
+  A2B2  N=139  胁迫起始 08-04 (-8 d vs 吐丝)  产量差  7.5%
+C:\Users\15945\AppData\Local\Temp\dssatupkwqrew created.
+C:\Users\15945\AppData\Local\Temp\dssatupkwqrew and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatuqvhwpvi created.
+C:\Users\15945\AppData\Local\Temp\dssatuqvhwpvi and its content has been removed.
+  A3B1  N=177  胁迫起始 08-05 (-7 d vs 吐丝)  产量差  8.6%
+C:\Users\15945\AppData\Local\Temp\dssatmkhyquga created.
+C:\Users\15945\AppData\Local\Temp\dssatmkhyquga and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatrebdhjyi created.
+C:\Users\15945\AppData\Local\Temp\dssatrebdhjyi and its content has been removed.
+  A3B2  N=177  胁迫起始 08-06 (-6 d vs 吐丝)  产量差  5.4%
+C:\Users\15945\AppData\Local\Temp\dssatbmegtwvi created.
+C:\Users\15945\AppData\Local\Temp\dssatbmegtwvi and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatsntpeufj created.
+C:\Users\15945\AppData\Local\Temp\dssatsntpeufj and its content has been removed.
+  A4B1  N=215  胁迫起始 09-08 (+27 d vs 吐丝)  产量差  5.8%
+C:\Users\15945\AppData\Local\Temp\dssatwsdesbmp created.
+C:\Users\15945\AppData\Local\Temp\dssatwsdesbmp and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatmiqmtqyt created.
+C:\Users\15945\AppData\Local\Temp\dssatmiqmtqyt and its content has been removed.
+  A4B2  N=215  胁迫起始 09-13 (+32 d vs 吐丝)  产量差  3.3%
+C:\Users\15945\AppData\Local\Temp\dssatcvylnuee created.
+C:\Users\15945\AppData\Local\Temp\dssatcvylnuee and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatemkeqtxz created.
+C:\Users\15945\AppData\Local\Temp\dssatemkeqtxz and its content has been removed.
+  A5B1  N=254  胁迫起始 09-12 (+31 d vs 吐丝)  产量差  3.0%
+C:\Users\15945\AppData\Local\Temp\dssatdjbxzfmg created.
+C:\Users\15945\AppData\Local\Temp\dssatdjbxzfmg and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatblnryucg created.
+C:\Users\15945\AppData\Local\Temp\dssatblnryucg and its content has been removed.
+  A5B2  N=254  胁迫起始 09-17 (+36 d vs 吐丝)  产量差  0.8%
+
+D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\fig\SD_SF\D5_氮胁迫.png  (314 kB)
+
+胁迫起始与产量损失：
+  A1    N=  0  起始 07-29 (-14 d)  胁迫天数  72  产量  31.3%  吸氮  51.4%
+  A2B1  N=139  起始 08-04 ( -8 d)  胁迫天数  47  产量   9.9%  吸氮  35.2%
+  A2B2  N=139  起始 08-04 ( -8 d)  胁迫天数  44  产量   7.5%  吸氮  31.6%
+  A3B1  N=177  起始 08-05 ( -7 d)  胁迫天数  45  产量   8.6%  吸氮  34.1%
+  A3B2  N=177  起始 08-06 ( -6 d)  胁迫天数  38  产量   5.4%  吸氮  28.6%
+  A4B1  N=215  起始 09-08 (+27 d)  胁迫天数  31  产量   5.8%  吸氮  28.5%
+  A4B2  N=215  起始 09-13 (+32 d)  胁迫天数  26  产量   3.3%  吸氮  23.7%
+  A5B1  N=254  起始 09-12 (+31 d)  胁迫天数  27  产量   3.0%  吸氮  24.5%
+  A5B2  N=254  起始 09-17 (+36 d)  胁迫天数  22  产量   0.8%  吸氮  18.9%
+
+=== s01_inputs.py --trial XX_SF ===
+trial XX_SF  (河南新乡 MY73)  -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\XX_SF
+weather  130 days  2026-06-08..2026-10-15  rain 352.9 mm -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\XX_SF\weather
+plot    soil_id  layers  depth_cm  slll  sdul  ssat    bd  sloc_top  awc_mm  no3_kg  nh4_kg  density_plants_m2  n_rate
+  CK XXCK000000       6       180 0.144 0.214 0.316 1.600     0.942  125.82   54.45    11.0              7.844       0
+A1B1 XXA1B10000       6       180 0.135 0.281 0.342 1.600     0.942  261.90   54.45    11.0              7.508     144
+A1B2 XXA1B20000       6       180 0.130 0.260 0.366 1.600     0.942  233.46   54.45    11.0              8.126     144
+A2B1 XXA2B10000       6       180 0.126 0.272 0.391 1.600     0.942  263.34   54.45    11.0              8.066     190
+A2B2 XXA2B20000       6       180 0.128 0.273 0.303 1.600     0.942  259.92   54.45    11.0              8.009     189
+A3B1 XXA3B10000       6       180 0.133 0.265 0.336 1.600     0.942  237.60   54.45    11.0              7.933     228
+A3B2 XXA3B20000       6       180 0.122 0.308 0.451 1.454     0.942  334.26   54.45    11.0              7.937     227
+A4B1 XXA4B10000       6       180 0.130 0.300 0.420 1.538     0.942  307.26   54.45    11.0              8.126     276
+A4B2 XXA4B20000       6       180 0.134 0.277 0.363 1.600     0.942  256.50   54.45    11.0              7.867     274
+management events: 70
+
+=== s02_run.py --trial XX_SF ===
+trial XX_SF  (河南新乡 MY73)  -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\XX_SF
+C:\Users\15945\AppData\Local\Temp\dssatvisgpwvo created.
+C:\Users\15945\AppData\Local\Temp\dssatvisgpwvo and its content has been removed.
+  CK  LAI 3.60  yield 6862  anthesis 08-10  maturity 10-06
+C:\Users\15945\AppData\Local\Temp\dssatojibyzeo created.
+C:\Users\15945\AppData\Local\Temp\dssatojibyzeo and its content has been removed.
+  A1B1  LAI 4.20  yield 8312  anthesis 08-10  maturity 10-06
+C:\Users\15945\AppData\Local\Temp\dssatnexopnqm created.
+C:\Users\15945\AppData\Local\Temp\dssatnexopnqm and its content has been removed.
+  A1B2  LAI 4.40  yield 8526  anthesis 08-10  maturity 10-06
+C:\Users\15945\AppData\Local\Temp\dssatljlbdkbx created.
+C:\Users\15945\AppData\Local\Temp\dssatljlbdkbx and its content has been removed.
+  A2B1  LAI 4.50  yield 8541  anthesis 08-10  maturity 10-06
+C:\Users\15945\AppData\Local\Temp\dssatanfgpuig created.
+C:\Users\15945\AppData\Local\Temp\dssatanfgpuig and its content has been removed.
+  A2B2  LAI 4.30  yield 8925  anthesis 08-10  maturity 10-06
+C:\Users\15945\AppData\Local\Temp\dssatlasotfyx created.
+C:\Users\15945\AppData\Local\Temp\dssatlasotfyx and its content has been removed.
+  A3B1  LAI 4.50  yield 8580  anthesis 08-10  maturity 10-06
+C:\Users\15945\AppData\Local\Temp\dssatftsviorg created.
+C:\Users\15945\AppData\Local\Temp\dssatftsviorg and its content has been removed.
+  A3B2  LAI 4.40  yield 8539  anthesis 08-10  maturity 10-06
+C:\Users\15945\AppData\Local\Temp\dssatymaaruat created.
+C:\Users\15945\AppData\Local\Temp\dssatymaaruat and its content has been removed.
+  A4B1  LAI 4.70  yield 8897  anthesis 08-10  maturity 10-06
+C:\Users\15945\AppData\Local\Temp\dssatnkfftgzp created.
+C:\Users\15945\AppData\Local\Temp\dssatnkfftgzp and its content has been removed.
+  A4B2  LAI 4.60  yield 8930  anthesis 08-10  maturity 10-06
+wrote 999 daily rows -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\XX_SF\sim\dssat_daily.csv
+
+=== s04_validate.py --trial XX_SF ===
+trial XX_SF  (河南新乡 MY73)
+plot  n_rate  obs_yield  sim_yield  yield_bias  lai_rmse  lai_peak_obs  lai_peak_sim  plateau_days_sim  plateau_change_sim
+  CK       0    6326.68     6862.0        8.46      0.90          4.88          3.58                13                0.58
+A1B1     144    8932.48     8312.0       -6.95      0.52          5.04          4.22                29               -0.25
+A1B2     144    8349.78     8526.0        2.11      0.59          5.38          4.36                15               -0.95
+A2B1     190    8390.16     8541.0        1.80      0.45          5.24          4.49                19               -0.93
+A2B2     189    9217.57     8925.0       -3.17      0.38          4.74          4.27                17               -0.98
+A3B1     228    8430.02     8580.0        1.78      0.48          5.37          4.49                21               -0.23
+A3B2     227    8991.69     8539.0       -5.03      0.40          5.13          4.44                22               -0.71
+A4B1     276    8736.14     8897.0        1.84      0.46          5.63          4.67                17               -0.67
+A4B2     274    8666.48     8930.0        3.04      0.35          4.80          4.58                18               -0.46
+
+                metric      value
+       yield_rrmse_pct   4.200712
+        yield_bias_pct    0.09339
+              lai_rmse   0.503599
+     biomass_rrmse_pct  23.476527
+      biomass_bias_pct -22.113086
+                hi_obs   0.399194
+                hi_sim   0.511042
+      plateau_days_sim       19.0
+      plateau_days_obs  10.111111
+plateau_change_sim_pct   -0.50996
+plateau_change_obs_pct    0.38692
+       anthesis_median 2026-08-10
+       maturity_median 2026-10-06
+
+=== s05_figures.py --trial XX_SF ===
+trial XX_SF  (河南新乡 MY73)
+  D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\fig\XX_SF\D1_LAI.png (311 kB)
+  D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\fig\XX_SF\D2_生物量.png (265 kB)
+  D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\fig\XX_SF\D3_产量.png (119 kB)
+  D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\fig\XX_SF\D4_氮响应.png (161 kB)
+
+=== s06_nstress.py --trial XX_SF ===
+trial XX_SF  (河南新乡 MY73)
+C:\Users\15945\AppData\Local\Temp\dssataqueaisf created.
+C:\Users\15945\AppData\Local\Temp\dssataqueaisf and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatzpldykne created.
+C:\Users\15945\AppData\Local\Temp\dssatzpldykne and its content has been removed.
+  CK  N=  0  胁迫起始 07-29 (-12 d vs 吐丝)  产量差 24.2%
+C:\Users\15945\AppData\Local\Temp\dssatdnjautmt created.
+C:\Users\15945\AppData\Local\Temp\dssatdnjautmt and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatgclmwgve created.
+C:\Users\15945\AppData\Local\Temp\dssatgclmwgve and its content has been removed.
+  A1B1  N=144  胁迫起始 08-03 (-7 d vs 吐丝)  产量差  8.7%
+C:\Users\15945\AppData\Local\Temp\dssatsdmyusan created.
+C:\Users\15945\AppData\Local\Temp\dssatsdmyusan and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatperqzqqs created.
+C:\Users\15945\AppData\Local\Temp\dssatperqzqqs and its content has been removed.
+  A1B2  N=144  胁迫起始 07-28 (-13 d vs 吐丝)  产量差  7.6%
+C:\Users\15945\AppData\Local\Temp\dssatsfcwuejl created.
+C:\Users\15945\AppData\Local\Temp\dssatsfcwuejl and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssateyphroof created.
+C:\Users\15945\AppData\Local\Temp\dssateyphroof and its content has been removed.
+  A2B1  N=190  胁迫起始 08-04 (-6 d vs 吐丝)  产量差  7.4%
+C:\Users\15945\AppData\Local\Temp\dssatnrjptqun created.
+C:\Users\15945\AppData\Local\Temp\dssatnrjptqun and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatuoshtqmf created.
+C:\Users\15945\AppData\Local\Temp\dssatuoshtqmf and its content has been removed.
+  A2B2  N=189  胁迫起始 09-06 (+27 d vs 吐丝)  产量差  1.3%
+C:\Users\15945\AppData\Local\Temp\dssattosesqfr created.
+C:\Users\15945\AppData\Local\Temp\dssattosesqfr and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatnmrnnfds created.
+C:\Users\15945\AppData\Local\Temp\dssatnmrnnfds and its content has been removed.
+  A3B1  N=228  胁迫起始 08-04 (-6 d vs 吐丝)  产量差  6.6%
+C:\Users\15945\AppData\Local\Temp\dssatjmouhdnt created.
+C:\Users\15945\AppData\Local\Temp\dssatjmouhdnt and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatuobukxef created.
+C:\Users\15945\AppData\Local\Temp\dssatuobukxef and its content has been removed.
+  A3B2  N=227  胁迫起始 08-04 (-6 d vs 吐丝)  产量差  7.1%
+C:\Users\15945\AppData\Local\Temp\dssathbceiehs created.
+C:\Users\15945\AppData\Local\Temp\dssathbceiehs and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatxrcloyjv created.
+C:\Users\15945\AppData\Local\Temp\dssatxrcloyjv and its content has been removed.
+  A4B1  N=276  胁迫起始 09-11 (+32 d vs 吐丝)  产量差  3.5%
+C:\Users\15945\AppData\Local\Temp\dssatxannaxgj created.
+C:\Users\15945\AppData\Local\Temp\dssatxannaxgj and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatleffimqk created.
+C:\Users\15945\AppData\Local\Temp\dssatleffimqk and its content has been removed.
+  A4B2  N=274  胁迫起始 09-13 (+34 d vs 吐丝)  产量差  2.8%
+
+D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\fig\XX_SF\D5_氮胁迫.png  (317 kB)
+
+胁迫起始与产量损失：
+  CK    N=  0  起始 07-29 (-12 d)  胁迫天数  70  产量  24.2%  吸氮  48.6%
+  A1B1  N=144  起始 08-03 ( -7 d)  胁迫天数  46  产量   8.7%  吸氮  32.2%
+  A1B2  N=144  起始 07-28 (-13 d)  胁迫天数  48  产量   7.6%  吸氮  31.5%
+  A2B1  N=190  起始 08-04 ( -6 d)  胁迫天数  42  产量   7.4%  吸氮  30.0%
+  A2B2  N=189  起始 09-06 (+27 d)  胁迫天数  36  产量   1.3%  吸氮  27.7%
+  A3B1  N=228  起始 08-04 ( -6 d)  胁迫天数  38  产量   6.6%  吸氮  28.9%
+  A3B2  N=227  起始 08-04 ( -6 d)  胁迫天数  39  产量   7.1%  吸氮  28.3%
+  A4B1  N=276  起始 09-11 (+32 d)  胁迫天数  33  产量   3.5%  吸氮  24.6%
+  A4B2  N=274  起始 09-13 (+34 d)  胁迫天数  31  产量   2.8%  吸氮  21.9%
+
+all trials done
