@@ -26,9 +26,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from apsim_override import SimCase, run_many  # noqa: E402
 from common import DS, SIM  # noqa: E402
 from s08_validate import compare  # noqa: E402
-from s20_conservative_figures import TRIAL, load, make_all  # noqa: E402
+from s20_conservative_figures import (SEN, TRIAL, load, make_all,  # noqa: E402
+                                      run_reference)
 
-SEN = "Leaf.CohortParameters.SenescenceAcceleration.One.FixedValue"
 SEN_BASELINE = 0.33
 PLOTS = ["A1", "A2B1", "A2B2", "A3B1", "A3B2", "A4B1", "A4B2", "A5B1", "A5B2"]
 
@@ -76,9 +76,10 @@ def main() -> None:
     st.to_csv(SIM / "validate_stats_baseline.csv", index=False)
 
     _sim_c, obs, _val_c = load()
+    sim_pot = run_reference(SEN_BASELINE)
     print(f"sim rows={len(daily)}  plots={daily['sim'].nunique()}")
     for p in make_all("L", sim=daily[daily["trial_id"] == TRIAL], obs=obs, val=sd,
-                      note="（sen=0.33，优化前）"):
+                      note="（sen=0.33，优化前）", sim_pot=sim_pot):
         print(" ", p)
 
     print("\n=== L 系列基线（sen=0.33） ===")

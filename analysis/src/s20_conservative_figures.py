@@ -39,6 +39,7 @@ plt.rcParams.update({
 TRIAL = "SD_SF"
 ORDER = ["A1", "A2B1", "A2B2", "A3B1", "A3B2", "A4B1", "A4B2", "A5B1", "A5B2"]
 N_RATE = dict(zip(ORDER, [0, 139, 139, 177, 177, 215, 215, 254, 254]))
+SEN = "Leaf.CohortParameters.SenescenceAcceleration.One.FixedValue"
 SIMCOL = "#c0392b"
 OBSCOL = "black"
 PLANTS_PER_MU = 667.0        # density is plants per mu (1 mu = 667 m2)
@@ -57,6 +58,88 @@ def load():
 
 def _series(sim, plot) -> pd.DataFrame:
     return sim[sim["sim"] == f"{TRIAL}_{plot}"].sort_values("Clock.Today")
+
+
+# --------------------------------------------------------------------------
+# nitrogen-stress reference run: every plot re-simulated with ample soil N, so
+# that  stress = 1 - actual/potential  is a measurable, model-internal quantity
+# --------------------------------------------------------------------------
+N_SHARE = [0.28, 0.22, 0.26, 0.14, 0.07, 0.03]
+N_AMPLE = 400.0                     # kg N/ha initial, far above any demand
+
+
+def _params(sen: float | None = None) -> dict:
+    import io
+    import json
+    cal = json.load(io.open(SIM / "phenology_calibrated.json", encoding="utf-8"))["乐农87"]["params"]
+    gro = json.load(io.open(SIM / "calibrated_cultivars.json", encoding="utf-8"))["乐农87"]["growth"]
+    p = {**cal, **gro}
+    if sen is not None:
+        p[SEN] = sen
+    return p
+
+
+def _set_initial_n(case, ntot: float):
+    fld = case._field()
+    soil = next(c for c in fld["Children"] if c.get("Name") == "Soil")
+    k = {c["Name"]: c for c in soil["Children"]}
+    bd, th = k["Physical"]["BD"], k["Physical"]["Thickness"]
+    k["NO3"]["InitialValues"] = [round(ntot * s * 0.9 / (b * t * 0.01), 2)
+                                  for s, b, t in zip(N_SHARE, bd, th)]
+    k["NH4"]["InitialValues"] = [round(ntot * s * 0.1 / (b * t * 0.01), 2)
+                                  for s, b, t in zip(N_SHARE, bd, th)]
+    return case
+
+
+def run_reference(sen: float | None = None) -> pd.DataFrame:
+    """Simulate the nine plots with ample initial nitrogen (same management)."""
+    import tempfile
+    from apsim_override import SimCase, run_many
+
+    params = _params(sen)
+    jobs = []
+    for plot in ORDER:
+        case = SimCase.load(Path(SIM).parent / "apsim" / f"{TRIAL}_{plot}.apsimx")
+        case = _set_initial_n(case.set_commands(params), N_AMPLE)
+        jobs.append((case, f"pot__{plot}"))
+    with tempfile.TemporaryDirectory() as td:
+        tables = run_many(jobs, td)
+
+    rows = []
+    for plot in ORDER:
+        df = tables.get(f"pot__{plot}")
+        if df is None:
+            continue
+        df = df.copy()
+        df["sim"] = f"{TRIAL}_{plot}"
+        df["trial_id"], df["plot"] = TRIAL, plot
+        rows.append(df)
+    return pd.concat(rows, ignore_index=True)
+
+
+def _ratio_table(sim, sim_pot) -> pd.DataFrame:
+    """actual / potential for the five indicators that matter."""
+    rows = []
+    for plot in ORDER:
+        a = _series(sim, plot).set_index("Clock.Today")
+        b = _series(sim_pot, plot).set_index("Clock.Today")
+        if a.empty or b.empty:
+            continue
+        ga = a["Maize.Grain.Number"].max()
+        gb = b["Maize.Grain.Number"].max()
+        rec = dict(plot=plot, N=N_RATE[plot])
+        for key, col, f in (("yield", "Maize.Grain.Total.Wt", 10.0),
+                            ("biomass", "Maize.AboveGround.Wt", 10.0),
+                            ("uptake", "Maize.AboveGround.N", 10.0),
+                            ("lai", "Maize.Leaf.LAI", 1.0)):
+            rec[key] = a[col].max() * f
+            rec[key + "_pot"] = b[col].max() * f
+            rec[key + "_r"] = rec[key] / rec[key + "_pot"] if rec[key + "_pot"] else np.nan
+        rec["grainw"] = a["Maize.Grain.Total.Wt"].max() / ga * 1000 if ga else np.nan
+        rec["grainw_pot"] = b["Maize.Grain.Total.Wt"].max() / gb * 1000 if gb else np.nan
+        rec["grainw_r"] = rec["grainw"] / rec["grainw_pot"] if rec["grainw_pot"] else np.nan
+        rows.append(rec)
+    return pd.DataFrame(rows)
 
 
 def _grid():
@@ -197,13 +280,105 @@ def fig_nitrogen_response(val, prefix: str, note: str = "") -> Path:
     return p
 
 
-def make_all(prefix: str, sim=None, obs=None, val=None, note: str = "") -> list[Path]:
+def fig_nstress(sim, sim_pot, prefix: str, note: str = "") -> Path:
+    """Nitrogen stress: how much growth is lost to nitrogen shortage.
+
+    Panel A quantifies the loss as 1 - actual/potential, where ``potential`` is the
+    same plot re-simulated with 400 kg N/ha of initial soil nitrogen.  Panels B-D
+    show when and through which process the gap opens, comparing A1 against the
+    envelope of the eight fertilised plots.
+    """
+    rt = _ratio_table(sim, sim_pot)
+    others = [p for p in ORDER if p != "A1"]
+
+    def band(metric: str) -> pd.DataFrame:
+        d = {}
+        for plot in ORDER:
+            g = _series(sim, plot).set_index("Clock.Today")
+            if g.empty:
+                continue
+            if metric == "grainw":
+                n = g["Maize.Grain.Number"]
+                with np.errstate(divide="ignore", invalid="ignore"):
+                    d[plot] = np.where(n > 0, g["Maize.Grain.Total.Wt"] / n * 1000, np.nan)
+            elif metric == "uptake":
+                d[plot] = g["Maize.AboveGround.N"] * 10.0
+            else:  # topsoil nitrate, 0-30 cm
+                cols = [c for c in g.columns if c.startswith("Soil.Nutrient.NO3.kgha")][:2]
+                d[plot] = g[cols].sum(axis=1)
+        return pd.DataFrame(d)
+
+    fig, axes = plt.subplots(1, 4, figsize=(19.5, 4.6))
+
+    # ---- A: stress intensity bars ----
+    ax = axes[0]
+    inds = [("yield_r", "产量", "#c0392b"), ("biomass_r", "生物量", "#e67e22"),
+            ("grainw_r", "单粒重", "#8e44ad"), ("uptake_r", "吸氮量", "#2980b9")]
+    x = np.arange(len(rt))
+    w = 0.2
+    for i, (col, lab, colr) in enumerate(inds):
+        vals = (1.0 - rt[col].to_numpy()) * 100.0
+        ax.bar(x + (i - 1.5) * w, vals, w, label=lab, color=colr, edgecolor="k", lw=0.3)
+    ax.set_xticks(x, [f"{p}\nN={n}" for p, n in zip(rt["plot"], rt["N"])], fontsize=7)
+    ax.set_ylabel("氮胁迫强度  1 − 实际/潜在 (%)")
+    ax.set_title("A  氮胁迫强度（潜在 = 初始氮 400 kg N/ha）")
+    ax.legend(frameon=False, ncol=2, fontsize=7.5)
+    a1 = rt.index[rt["plot"] == "A1"][0]
+    ax.annotate("仅 A1 受氮限制", xy=(a1, 20), xytext=(a1 + 1.4, 22),
+                fontsize=8.5, arrowprops=dict(arrowstyle="->", lw=0.9, color="grey"))
+    ax.set_ylim(0, max(26, (1 - rt[[c for c, _, _ in inds]].min().min()) * 100 * 1.25))
+
+    # ---- B-D: when the gap opens ----
+    panels = [
+        ("uptake", "地上部吸氮量 (kg N/ha)", "B  吸氮量：A1 vs 其余 8 小区范围",
+         "约 7 月下旬开始分离"),
+        ("grainw", "单粒重 (mg)", "C  单粒重：灌浆期分化", "9 月中旬开始分化"),
+        ("no3", "表层 NO₃-N (kg/ha)", "D  表层土壤硝态氮", "A1 无追肥，供氮源仅为初始氮+矿化"),
+    ]
+    for ax, (metric, ylab, title, note_txt) in zip(axes[1:], panels):
+        d = band(metric)
+        if d.empty:
+            continue
+        o = d[others]
+        ax.fill_between(d.index, o.min(axis=1), o.max(axis=1), color="#95a5a6",
+                        alpha=0.30, lw=0, label="其余 8 小区范围")
+        ax.plot(d.index, o.mean(axis=1), lw=1.4, color="#7f8c8d", label="其余 8 小区均值")
+        ax.plot(d.index, d["A1"], lw=2.2, color="#c0392b", label="A1 (N=0)")
+        ax.set_ylabel(ylab)
+        ax.set_title(title)
+        ax.set_xlabel("日期 (2026)")
+        ax.xaxis.set_major_formatter(mdates.DateFormatter("%m-%d"))
+        ax.tick_params(axis="x", rotation=45)
+        ax.legend(frameon=False, fontsize=7.5)
+        ax.text(0.03, 0.06, note_txt, transform=ax.transAxes, fontsize=7.5,
+                color="#555555")
+
+    fig.suptitle(f"{prefix}5  氮胁迫：A1 与其余处理的差异{note}", fontsize=13.5, y=1.02)
+    fig.tight_layout()
+    p = FIG / f"{prefix}5_氮胁迫.png"
+    fig.savefig(p, bbox_inches="tight")
+    plt.close(fig)
+
+    rt.to_csv(SIM / f"nstress_intensity_{prefix}.csv", index=False)
+    print(f"  氮胁迫强度（1-实际/潜在，%），{prefix} 系列：")
+    for _, r in rt.iterrows():
+        print(f"    {r['plot']:5s} N={int(r['N']):3d}  产量 {(1-r['yield_r'])*100:5.1f}  "
+              f"生物量 {(1-r['biomass_r'])*100:5.1f}  单粒重 {(1-r['grainw_r'])*100:5.1f}  "
+              f"吸氮 {(1-r['uptake_r'])*100:5.1f}  LAI {(1-r['lai_r'])*100:5.1f}")
+    return p
+
+
+def make_all(prefix: str, sim=None, obs=None, val=None, note: str = "",
+             sim_pot=None, sen: float | None = None) -> list[Path]:
     """Draw the four figures.  Data can be injected so a second parameter set
     (the pre-optimisation baseline) can reuse exactly the same code path."""
     if sim is None or obs is None or val is None:
         sim, obs, val = load()
+    if sim_pot is None:
+        sim_pot = run_reference(sen)
     return [fig_lai(sim, obs, val, prefix, note), fig_biomass(sim, obs, prefix, note),
-            fig_yield(val, prefix, note), fig_nitrogen_response(val, prefix, note)]
+            fig_yield(val, prefix, note), fig_nitrogen_response(val, prefix, note),
+            fig_nstress(sim, sim_pot, prefix, note)]
 
 
 def main() -> None:
