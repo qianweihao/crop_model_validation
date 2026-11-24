@@ -43,18 +43,18 @@ https://py-dssattools.readthedocs.io
 @I  EFIR  IDEP  ITHR  IEPT  IOFF  IAME  IAMT IRNAME
  1     1    30    50   100 GS000 IR001    10 DFLTIR
 @I IDATE  IROP IRVAL
- 1 26202 IR001    11
- 1 26211 IR001    11
- 1 26221 IR001    11
- 1 26250 IR001    30
+ 1 26202 IR001    10
+ 1 26211 IR001    10
+ 1 26221 IR001    10
+ 1 26250 IR001    27
 
 *FERTILIZERS (INORGANIC)
 @F FDATE  FMCD  FACD  FDEP  FAMN  FAMP  FAMK  FAMC  FAMO  FOCD FERNAM
  1 26169 FE005 AP001     5     0     0     0     0     0   -99   NONE
- 1 26162 FE005 AP001     5    43     0     0     0     0   -99   UREA
+ 1 26162 FE005 AP008     5    43     0     0     0     0   -99   UREA
  1 26199 FE005 AP001     5    36     0     0     0     0   -99   UREA
- 1 26211 FE005 AP001     5    43     0     0     0     0   -99   UREA
- 1 26221 FE005 AP001     5    21     0     0     0     0   -99   UREA
+ 1 26211 FE005 AP005     5    43     0     0     0     0   -99   UREA
+ 1 26221 FE005 AP005     5    21     0     0     0     0   -99   UREA
 
 *HARVEST DETAILS
 @H HDATE  HSTG  HCOM HSIZE   HPC  HBPC HNAME

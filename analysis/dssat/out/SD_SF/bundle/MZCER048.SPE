@@ -38,7 +38,7 @@
   TANCE   0.0440    !Nitrogen content in above ground biomass at emergence, g N/g dry matter
   RCNP    0.01060   !Root critical nitrogen concentration, g N/g root dry weight
   RANCE   0.0220    !Root N content at emergence   g N/g root
-  CTCNP1  1.52      !Maximum value for critical tissue N concentration (in developing seed embryo)
+  CTCNP1  2.0      !Maximum value for critical tissue N concentration (in developing seed embryo)
   CTCNP2  0.160     !Coefficent for change in conc. with growth stage
 
 *ROOT PARAMETERS

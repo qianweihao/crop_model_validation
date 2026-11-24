@@ -1,6 +1,6 @@
 *SIMULATION OVERVIEW FILE
 
-*DSSAT Cropping System Model Ver. 4.8.0.028 -develop  NOV 20, 2026 22:30:49
+*DSSAT Cropping System Model Ver. 4.8.0.028 -develop  NOV 23, 2026 11:29:23
 
 *RUN   1        : DEFAULT TREATMENT         MZCER048 XX012601    1
  MODEL          : MZCER048 - Maize
@@ -16,7 +16,7 @@
  SOIL           : XXA2B20000     TEXTURE : 2     -
  SOIL INITIAL C : DEPTH:180cm EXTR. H2O:259.2mm  NO3: 54.4kg/ha  NH4: 11.0kg/ha
  WATER BALANCE  : IRRIGATE ON REPORTED DATE(S)
- IRRIGATION     :       70 mm IN     5 APPLICATIONS
+ IRRIGATION     :       63 mm IN     5 APPLICATIONS
  NITROGEN BAL.  : SOIL-N & N-UPTAKE SIMULATION; NO N-FIXATION
  N-FERTILIZER   :      186 kg/ha IN     6 APPLICATIONS
  RESIDUE/MANURE : INITIAL :     0 kg/ha ;       0 kg/ha IN     0 APPLICATIONS
@@ -49,8 +49,8 @@ SOIL ALBEDO    : 0.12      EVAPORATION LIMIT : 6.00         MIN. FACTOR  : 1.00
 RUNOFF CURVE # :75.00      DRAINAGE RATE     : 0.40         FERT. FACTOR : 1.00
 
  Maize            CULTIVAR: 990002-            MY73   ECOTYPE: IB0001
- P1     : 235.00  P2     : 0.3000  P5     : 900.00
- G2     :1300.00  G3     :  6.200  PHINT  : 50.000
+ P1     : 235.00  P2     : 0.3000  P5     : 980.00
+ G2     :1300.00  G3     :  4.600  PHINT  : 50.000
 
 
 *SIMULATED CROP AND SOIL STATUS AT MAIN DEVELOPMENT STAGES
@@ -66,11 +66,11 @@ RUNOFF CURVE # :75.00      DRAINAGE RATE     : 0.40         FERT. FACTOR : 1.00
  24 JUN    6 Emergence       32   0.00   2.1    1  4.4  0.00  0.01  0.00  0.00     1
   5 JUL   17 End Juveni     156   0.33   7.5    5  3.2  0.00  0.00  0.00  0.00     2
  10 JUL   22 Floral Ini     449   0.80   9.8   17  3.8  0.00  0.00  0.00  0.00     3
- 10 AUG   53 75% Silkin    7253   4.18  20.8  121  1.7  0.00  0.06  0.00  0.00     4
- 20 AUG   63 Beg Gr Fil    9198   4.06  20.8  131  1.4  0.00  0.06  0.00  0.00     5
-  1 OCT  105 End Gr Fil   16733   1.84  20.8  148  0.9  0.00  0.37  0.00  0.00     6
-  6 OCT  110 Maturity     16733   1.84  20.8  148  0.9  0.00  0.76  0.00  0.00    10
-  6 OCT  110 Harvest      16733   1.84  20.8  148  0.9  0.00  0.00  0.00  0.00    10
+ 10 AUG   53 75% Silkin    7438   4.44  20.8  146  2.0  0.00  0.02  0.00  0.00     4
+ 20 AUG   63 Beg Gr Fil    9400   4.19  20.8  147  1.6  0.00  0.00  0.00  0.00     5
+  9 OCT  113 End Gr Fil   17852   1.81  20.8  175  1.0  0.00  0.16  0.00  0.00     6
+ 12 OCT  116 Maturity     17852   1.81  20.8  175  1.0  0.00  0.71  0.00  0.00    10
+ 12 OCT  116 Harvest      17852   1.81  20.8  175  1.0  0.00  0.00  0.00  0.00    10
 
 
 *MAIN GROWTH AND DEVELOPMENT VARIABLES
@@ -78,21 +78,21 @@ RUNOFF CURVE # :75.00      DRAINAGE RATE     : 0.40         FERT. FACTOR : 1.00
 @     VARIABLE                                         SIMULATED     MEASURED
       --------                                         ---------     --------
       Anthesis day (dap)                                      53          -99
-      Physiological maturity day (dap)                       110          -99
-      Yield at harvest maturity (kg [dm]/ha)                9412          -99
-      Number at maturity (no/m2)                            3845          -99
-      Unit wt at maturity (g [dm]/unit)                   0.2448          -99
-      Number at maturity (no/unit)                         480.6          -99
-      Tops weight at maturity (kg [dm]/ha)                 16733          -99
-      By-product produced (stalk) at maturity (kg[dm]/ha    7394          -99
-      Leaf area index, maximum                              4.22          -99
-      Harvest index at maturity                            0.563          -99
-      Grain N at maturity (kg/ha)                            117          -99
-      Tops N at maturity (kg/ha)                             148          -99
-      Stem N at maturity (kg/ha)                              31          -99
-      Grain N at maturity (%)                                1.2          -99
-      Tops weight at anthesis (kg [dm]/ha)                  6929          -99
-      Tops N at anthesis (kg/ha)                             116          -99
+      Physiological maturity day (dap)                       116          -99
+      Yield at harvest maturity (kg [dm]/ha)                8826          -99
+      Number at maturity (no/m2)                            3987          -99
+      Unit wt at maturity (g [dm]/unit)                   0.2213          -99
+      Number at maturity (no/unit)                         498.4          -99
+      Tops weight at maturity (kg [dm]/ha)                 17852          -99
+      By-product produced (stalk) at maturity (kg[dm]/ha    9101          -99
+      Leaf area index, maximum                              4.48          -99
+      Harvest index at maturity                            0.494          -99
+      Grain N at maturity (kg/ha)                            133          -99
+      Tops N at maturity (kg/ha)                             175          -99
+      Stem N at maturity (kg/ha)                              42          -99
+      Grain N at maturity (%)                                1.5          -99
+      Tops weight at anthesis (kg [dm]/ha)                  7084          -99
+      Tops N at anthesis (kg/ha)                             137          -99
       Leaf number per stem at maturity                     20.77          -99
       Emergence day (dap)                                      6          -99
 
@@ -107,43 +107,43 @@ RUNOFF CURVE # :75.00      DRAINAGE RATE     : 0.40         FERT. FACTOR : 1.00
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
  Emergence-End Juvenile    11  34.8  22.8  28.8  21.2  14.36  419.6    8.4   17.4   70.8    0    0   11   10    6    2  0.000  0.000  0.002  0.004  0.000  0.000
  End Juvenil-Floral Init    5  35.7  25.0  30.4  19.7  14.29  419.6    1.5   11.7   30.5    0    0    5    5    3    2  0.000  0.000  0.002  0.005  0.000  0.000
- Floral Init-End Lf Grow   31  33.3  25.0  29.2  17.8  13.93  419.6  193.3  132.2  147.1    0    0   30   20   13   16  0.000  0.000  0.023  0.057  0.000  0.000
- End Lf Grth-Beg Grn Fil   10  29.6  22.8  26.2  13.1  13.36  419.6   84.1   31.8   31.8    0    0    5    2    0    5  0.000  0.000  0.030  0.075  0.000  0.000
- Grain Filling Phase       42  29.0  19.5  24.2  14.8  12.42  419.6   38.2  146.8  146.9    0    0   19   10    0    9  0.000  0.000  0.193  0.353  0.000  0.000
+ Floral Init-End Lf Grow   31  33.3  25.0  29.2  17.8  13.93  419.6  193.3  132.2  147.0    0    0   30   20   13   16  0.000  0.000  0.008  0.020  0.000  0.000
+ End Lf Grth-Beg Grn Fil   10  29.6  22.8  26.2  13.1  13.36  419.6   84.1   31.8   31.8    0    0    5    2    0    5  0.000  0.000  0.000  0.000  0.000  0.000
+ Grain Filling Phase       50  28.5  18.1  23.3  14.9  12.27  419.6   41.3  173.1  173.2    0    0   19   10    0   10  0.000  0.000  0.070  0.149  0.000  0.000
    
- Planting to Harvest      110  30.9  21.6  26.2  16.3  13.28  419.6  344.8  370.4  465.7    0    0   73   48   22   40  0.000  0.000  0.106  0.193  0.000  0.000
+ Planting to Harvest      116  30.8  21.1  26.0  16.2  13.18  419.6  344.8  389.4  485.0    0    0   73   48   22   40  0.000  0.000  0.044  0.089  0.000  0.000
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 *Resource Productivity
- Growing season length: 110 days 
+ Growing season length: 116 days 
 
  Precipitation during growing season       344.8 mm[rain]
-   Dry Matter Productivity                  4.85 kg[DM]/m3[rain]          =   48.5 kg[DM]/ha per mm[rain]
-   Yield Productivity                       2.73 kg[grain yield]/m3[rain] =   27.3 kg[yield]/ha per mm[rain]
+   Dry Matter Productivity                  5.18 kg[DM]/m3[rain]          =   51.8 kg[DM]/ha per mm[rain]
+   Yield Productivity                       2.56 kg[grain yield]/m3[rain] =   25.6 kg[yield]/ha per mm[rain]
 
- Evapotranspiration during growing season  370.4 mm[ET]
-   Dry Matter Productivity                  4.52 kg[DM]/m3[ET]            =   45.2 kg[DM]/ha per mm[ET]
-   Yield Productivity                       2.54 kg[grain yield]/m3[ET]   =   25.4 kg[yield]/ha per mm[ET]
+ Evapotranspiration during growing season  389.4 mm[ET]
+   Dry Matter Productivity                  4.58 kg[DM]/m3[ET]            =   45.8 kg[DM]/ha per mm[ET]
+   Yield Productivity                       2.27 kg[grain yield]/m3[ET]   =   22.7 kg[yield]/ha per mm[ET]
 
- Transpiration during growing season       300.5 mm[EP]
-   Dry Matter Productivity                  5.57 kg[DM]/m3[EP]            =   55.7 kg[DM]/ha per mm[EP]
-   Yield Productivity                       3.13 kg[grain yield]/m3[EP]   =   31.3 kg[yield]/ha per mm[EP]
+ Transpiration during growing season       317.2 mm[EP]
+   Dry Matter Productivity                  5.63 kg[DM]/m3[EP]            =   56.3 kg[DM]/ha per mm[EP]
+   Yield Productivity                       2.78 kg[grain yield]/m3[EP]   =   27.8 kg[yield]/ha per mm[EP]
 
- Irrigation during growing season           70.0 mm[irrig]
-   Dry Matter Productivity                 23.90 kg[DM]/m3[irrig]         =  239.0 kg[DM]/ha per mm[irrig]
-   Yield Productivity                      13.45 kg[grain yield]/m3[irrig]=  134.5 kg[yield]/ha per mm[irrig]
+ Irrigation during growing season           63.0 mm[irrig]
+   Dry Matter Productivity                 28.34 kg[DM]/m3[irrig]         =  283.4 kg[DM]/ha per mm[irrig]
+   Yield Productivity                      14.01 kg[grain yield]/m3[irrig]=  140.1 kg[yield]/ha per mm[irrig]
 
  N applied during growing season            130. kg[N applied]/ha
-   Dry Matter Productivity                 128.7 kg[DM]/kg[N applied]
-   Yield Productivity                       72.4 kg[yield]/kg[N applied]
+   Dry Matter Productivity                 137.3 kg[DM]/kg[N applied]
+   Yield Productivity                       67.9 kg[yield]/kg[N applied]
 
- N uptake during growing season              172 kg[N uptake]/ha
-   Dry Matter Productivity                  97.3 kg[DM]/kg[N uptake]
-   Yield Productivity                       54.7 kg[yield]/kg[N uptake]
+ N uptake during growing season              209 kg[N uptake]/ha
+   Dry Matter Productivity                  85.4 kg[DM]/kg[N uptake]
+   Yield Productivity                       42.2 kg[yield]/kg[N uptake]
 
 --------------------------------------------------------------------------------------------------------------
 
-                     Maize YIELD :     9412 kg/ha    [Dry weight] 
+                     Maize YIELD :     8826 kg/ha    [Dry weight] 
 
 **************************************************************************************************************

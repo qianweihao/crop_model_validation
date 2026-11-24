@@ -1,0 +1,59 @@
+trial SD_SF  (山东德州 乐农87)  scenario base (实测留苗密度)
+C:\Users\15945\AppData\Local\Temp\dssatexzqywzx created.
+C:\Users\15945\AppData\Local\Temp\dssatexzqywzx and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatbnxpsjcf created.
+C:\Users\15945\AppData\Local\Temp\dssatbnxpsjcf and its content has been removed.
+  A1  N=  0  胁迫起始 07-24 (-17 d vs 吐丝)  产量差 39.7%
+C:\Users\15945\AppData\Local\Temp\dssatdsfjjspo created.
+C:\Users\15945\AppData\Local\Temp\dssatdsfjjspo and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatrvvjsjnv created.
+C:\Users\15945\AppData\Local\Temp\dssatrvvjsjnv and its content has been removed.
+  A2B1  N=139  胁迫起始 09-16 (+37 d vs 吐丝)  产量差  0.0%
+C:\Users\15945\AppData\Local\Temp\dssatneveyafw created.
+C:\Users\15945\AppData\Local\Temp\dssatneveyafw and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatzlsbvpyd created.
+C:\Users\15945\AppData\Local\Temp\dssatzlsbvpyd and its content has been removed.
+  A2B2  N=139  胁迫起始 09-17 (+38 d vs 吐丝)  产量差  0.4%
+C:\Users\15945\AppData\Local\Temp\dssatxdorzaas created.
+C:\Users\15945\AppData\Local\Temp\dssatxdorzaas and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatrmhzbhhl created.
+C:\Users\15945\AppData\Local\Temp\dssatrmhzbhhl and its content has been removed.
+  A3B1  N=177  胁迫起始 09-22 (+43 d vs 吐丝)  产量差  0.0%
+C:\Users\15945\AppData\Local\Temp\dssatxdhfhtpm created.
+C:\Users\15945\AppData\Local\Temp\dssatxdhfhtpm and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatdjtscwcd created.
+C:\Users\15945\AppData\Local\Temp\dssatdjtscwcd and its content has been removed.
+  A3B2  N=177  胁迫起始 09-27 (+48 d vs 吐丝)  产量差  0.0%
+C:\Users\15945\AppData\Local\Temp\dssatpllgfskh created.
+C:\Users\15945\AppData\Local\Temp\dssatpllgfskh and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatnyiliguf created.
+C:\Users\15945\AppData\Local\Temp\dssatnyiliguf and its content has been removed.
+  A4B1  N=215  胁迫起始 无 （全季无持续胁迫）  产量差  0.0%
+C:\Users\15945\AppData\Local\Temp\dssatyjuujucj created.
+C:\Users\15945\AppData\Local\Temp\dssatyjuujucj and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatzdsfdqsg created.
+C:\Users\15945\AppData\Local\Temp\dssatzdsfdqsg and its content has been removed.
+  A4B2  N=215  胁迫起始 无 （全季无持续胁迫）  产量差  0.0%
+C:\Users\15945\AppData\Local\Temp\dssatwqlmlaje created.
+C:\Users\15945\AppData\Local\Temp\dssatwqlmlaje and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatfjxbdrqe created.
+C:\Users\15945\AppData\Local\Temp\dssatfjxbdrqe and its content has been removed.
+  A5B1  N=254  胁迫起始 无 （全季无持续胁迫）  产量差 -0.0%
+C:\Users\15945\AppData\Local\Temp\dssathksbitqr created.
+C:\Users\15945\AppData\Local\Temp\dssathksbitqr and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatarimylog created.
+C:\Users\15945\AppData\Local\Temp\dssatarimylog and its content has been removed.
+  A5B2  N=254  胁迫起始 无 （全季无持续胁迫）  产量差  0.0%
+
+D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\fig\SD_SF\D5_氮胁迫.png  (280 kB)
+
+胁迫起始与产量损失：
+  A1    N=  0  起始 07-24 (-17 d)  胁迫天数  72  产量  39.7%  吸氮  52.7%
+  A2B1  N=139  起始 09-16 (+37 d)  胁迫天数  18  产量   0.0%  吸氮  16.2%
+  A2B2  N=139  起始 09-17 (+38 d)  胁迫天数  17  产量   0.4%  吸氮  14.7%
+  A3B1  N=177  起始 09-22 (+43 d)  胁迫天数  12  产量   0.0%  吸氮   9.7%
+  A3B2  N=177  起始 09-27 (+48 d)  胁迫天数   7  产量   0.0%  吸氮   4.7%
+  A4B1  N=215  起始   无   (  — d)  胁迫天数   0  产量   0.0%  吸氮   0.2%
+  A4B2  N=215  起始   无   (  — d)  胁迫天数   0  产量   0.0%  吸氮   0.0%
+  A5B1  N=254  起始   无   (  — d)  胁迫天数   0  产量  -0.0%  吸氮  -0.0%
+  A5B2  N=254  起始   无   (  — d)  胁迫天数   0  产量   0.0%  吸氮   0.0%

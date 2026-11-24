@@ -1,21 +1,21 @@
 trial SD_MY73  (山东潍坊 MY73)  scenario base (实测留苗密度)
 plot  n_rate  obs_yield  sim_yield  yield_bias  lai_rmse  lai_peak_obs  lai_peak_sim  plateau_days_sim  plateau_change_sim
-  W1     270   12411.27    10255.0      -17.37       NaN           NaN          4.35                14                0.97
-  W2     270   12078.82    10255.0      -15.10       NaN           NaN          4.35                14                0.97
-  W3     270   12189.64    10255.0      -15.87       NaN           NaN          4.35                14                0.97
-  W4     270   11968.01    10255.0      -14.31       NaN           NaN          4.35                14                0.97
+  W1     270   12411.27     9505.0      -23.42       NaN           NaN          4.98                12               -0.84
+  W2     270   12078.82     9505.0      -21.31       NaN           NaN          4.98                12               -0.84
+  W3     270   12189.64     9505.0      -22.02       NaN           NaN          4.98                12               -0.84
+  W4     270   11968.01     9505.0      -20.58       NaN           NaN          4.98                12               -0.84
 
                 metric      value
-       yield_rrmse_pct  15.737334
-        yield_bias_pct -15.679528
+       yield_rrmse_pct  21.887836
+        yield_bias_pct  -21.84631
               lai_rmse        NaN
-     biomass_rrmse_pct  39.413919
-      biomass_bias_pct -39.074674
+     biomass_rrmse_pct   35.11684
+      biomass_bias_pct -34.735653
                 hi_obs   0.396806
-                hi_sim   0.547898
-      plateau_days_sim       14.0
+                hi_sim   0.474065
+      plateau_days_sim       12.0
       plateau_days_obs        0.0
-plateau_change_sim_pct   0.966184
+plateau_change_sim_pct   -0.83682
 plateau_change_obs_pct        NaN
        anthesis_median 2026-08-07
        maturity_median 2026-10-08

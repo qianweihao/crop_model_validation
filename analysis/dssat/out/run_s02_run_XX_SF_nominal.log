@@ -1,29 +1,29 @@
 trial XX_SF  (河南新乡 MY73)  scenario nominal (额定播种密度)  -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\XX_SF\sim_nominal
-C:\Users\15945\AppData\Local\Temp\dssattyvmoxqj created.
-C:\Users\15945\AppData\Local\Temp\dssattyvmoxqj and its content has been removed.
-  CK  LAI 3.70  yield 6639  anthesis 08-10  maturity 10-06
-C:\Users\15945\AppData\Local\Temp\dssatvwutgjem created.
-C:\Users\15945\AppData\Local\Temp\dssatvwutgjem and its content has been removed.
-  A1B1  LAI 4.30  yield 8921  anthesis 08-10  maturity 10-06
-C:\Users\15945\AppData\Local\Temp\dssatjrqleqjj created.
-C:\Users\15945\AppData\Local\Temp\dssatjrqleqjj and its content has been removed.
-  A1B2  LAI 4.30  yield 8980  anthesis 08-10  maturity 10-06
-C:\Users\15945\AppData\Local\Temp\dssatbwynrqse created.
-C:\Users\15945\AppData\Local\Temp\dssatbwynrqse and its content has been removed.
-  A2B1  LAI 4.50  yield 9037  anthesis 08-10  maturity 10-06
-C:\Users\15945\AppData\Local\Temp\dssatjjqellqw created.
-C:\Users\15945\AppData\Local\Temp\dssatjjqellqw and its content has been removed.
-  A2B2  LAI 4.30  yield 9392  anthesis 08-10  maturity 10-06
-C:\Users\15945\AppData\Local\Temp\dssatyucikvxm created.
-C:\Users\15945\AppData\Local\Temp\dssatyucikvxm and its content has been removed.
-  A3B1  LAI 4.50  yield 9109  anthesis 08-10  maturity 10-06
-C:\Users\15945\AppData\Local\Temp\dssataimmenld created.
-C:\Users\15945\AppData\Local\Temp\dssataimmenld and its content has been removed.
-  A3B2  LAI 4.50  yield 9224  anthesis 08-10  maturity 10-06
-C:\Users\15945\AppData\Local\Temp\dssatsdzuyfwq created.
-C:\Users\15945\AppData\Local\Temp\dssatsdzuyfwq and its content has been removed.
-  A4B1  LAI 4.70  yield 9333  anthesis 08-10  maturity 10-06
-C:\Users\15945\AppData\Local\Temp\dssatxuekglcy created.
-C:\Users\15945\AppData\Local\Temp\dssatxuekglcy and its content has been removed.
-  A4B2  LAI 4.60  yield 9500  anthesis 08-10  maturity 10-06
-wrote 999 daily rows -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\XX_SF\sim_nominal\dssat_daily.csv
+C:\Users\15945\AppData\Local\Temp\dssatbdhxdmpm created.
+C:\Users\15945\AppData\Local\Temp\dssatbdhxdmpm and its content has been removed.
+  CK  LAI 3.70  yield 5796  anthesis 08-10  maturity 10-12
+C:\Users\15945\AppData\Local\Temp\dssatqoekqull created.
+C:\Users\15945\AppData\Local\Temp\dssatqoekqull and its content has been removed.
+  A1B1  LAI 4.60  yield 8716  anthesis 08-10  maturity 10-12
+C:\Users\15945\AppData\Local\Temp\dssatcsezxhjt created.
+C:\Users\15945\AppData\Local\Temp\dssatcsezxhjt and its content has been removed.
+  A1B2  LAI 4.60  yield 8727  anthesis 08-10  maturity 10-12
+C:\Users\15945\AppData\Local\Temp\dssateftdlphz created.
+C:\Users\15945\AppData\Local\Temp\dssateftdlphz and its content has been removed.
+  A2B1  LAI 4.90  yield 8898  anthesis 08-10  maturity 10-12
+C:\Users\15945\AppData\Local\Temp\dssatdyevvsui created.
+C:\Users\15945\AppData\Local\Temp\dssatdyevvsui and its content has been removed.
+  A2B2  LAI 4.50  yield 8863  anthesis 08-10  maturity 10-12
+C:\Users\15945\AppData\Local\Temp\dssatyfgjlncf created.
+C:\Users\15945\AppData\Local\Temp\dssatyfgjlncf and its content has been removed.
+  A3B1  LAI 4.90  yield 8939  anthesis 08-10  maturity 10-12
+C:\Users\15945\AppData\Local\Temp\dssatdvgquodh created.
+C:\Users\15945\AppData\Local\Temp\dssatdvgquodh and its content has been removed.
+  A3B2  LAI 4.80  yield 8923  anthesis 08-10  maturity 10-12
+C:\Users\15945\AppData\Local\Temp\dssaterdsbzbf created.
+C:\Users\15945\AppData\Local\Temp\dssaterdsbzbf and its content has been removed.
+  A4B1  LAI 4.90  yield 8960  anthesis 08-10  maturity 10-12
+C:\Users\15945\AppData\Local\Temp\dssatqhygzrrs created.
+C:\Users\15945\AppData\Local\Temp\dssatqhygzrrs and its content has been removed.
+  A4B2  LAI 4.90  yield 8956  anthesis 08-10  maturity 10-12
+wrote 1053 daily rows -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\XX_SF\sim_nominal\dssat_daily.csv

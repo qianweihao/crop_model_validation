@@ -43,10 +43,10 @@ https://py-dssattools.readthedocs.io
 @I  EFIR  IDEP  ITHR  IEPT  IOFF  IAME  IAMT IRNAME
  1     1    30    50   100 GS000 IR001    10 DFLTIR
 @I IDATE  IROP IRVAL
- 1 26197 IR001    25
- 1 26209 IR001    25
- 1 26217 IR001    25
- 1 26233 IR001    25
+ 1 26197 IR001    22
+ 1 26209 IR001    22
+ 1 26217 IR001    22
+ 1 26233 IR001    22
 
 *FERTILIZERS (INORGANIC)
 @F FDATE  FMCD  FACD  FDEP  FAMN  FAMP  FAMK  FAMC  FAMO  FOCD FERNAM
@@ -54,7 +54,7 @@ https://py-dssattools.readthedocs.io
  1 26167 FE005 AP001     5   108     0     0     0     0   -99   UREA
  1 26186 FE005 AP001     5    81     0     0     0     0   -99   UREA
  1 26206 FE005 AP001     5    54     0     0     0     0   -99   UREA
- 1 26217 FE005 AP001     5    27     0     0     0     0   -99   UREA
+ 1 26217 FE005 AP005     5    27     0     0     0     0   -99   UREA
 
 *HARVEST DETAILS
 @H HDATE  HSTG  HCOM HSIZE   HPC  HBPC HNAME
@@ -64,7 +64,7 @@ https://py-dssattools.readthedocs.io
 @N GENERAL     NYERS NREPS START SDATE RSEED SNAME.................... SMODEL
  1 GE              1     1     S 26159  2409                   DEFAULT  MZCER
 @N OPTIONS     WATER NITRO SYMBI PHOSP POTAS DISES  CHEM  TILL   CO2
- 1 OP              Y     Y     N     N     N     N     N     N     M
+ 1 OP              Y     N     N     N     N     N     N     N     M
 @N METHODS     WTHER INCON LIGHT EVAPO INFIL PHOTO HYDRO NSWIT MESOM MESEV MESOL
  1 ME              M     M     E     R     S     C     R     1     G     S     2
 @N MANAGEMENT  PLANT IRRIG FERTI RESID HARVS

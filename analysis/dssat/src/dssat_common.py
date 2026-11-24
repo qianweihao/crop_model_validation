@@ -109,6 +109,7 @@ class TrialCfg:
     # stand-ins instead of silently falling back to DSSAT defaults
     display: str = ""                         # 报告/图标题里的中文名
     species: dict = field(default_factory=dict)   # 物种级参数覆盖（PARSR 等）
+    nitrogen: bool = True                     # False = 不做氮限制模拟（NITRO=N）
     soil_source: tuple | None = None          # (trial_id, plot) to copy
     assumed_n: tuple | None = None            # ((date, kg N/ha), ...)
     assumed_irrig: tuple | None = None        # ((date, mm), ...)
@@ -128,9 +129,15 @@ TRIALS: dict[str, TrialCfg] = {
                  DESC="Shandong Dezhou 2026"),
         # 方案 A（2026-11 定稿）：最终叶数 20（实测 20）、ADAT 08-10、
         # 产量偏差 +1.5% / 生物量 −7.7%（原 235/60/880/1300/6.0 只有 17 片叶、
-        # 生物量 −10.9%）。见 report/DSSAT_MY73_QUESTIONS.md 附五。
-        cultivar=dict(P1=250.0, P2=0.30, P5=880.0, G2=1300.0, G3=6.80, PHINT=51.0),
-        nitrate_scale=0.24,
+        # 生物量 −10.9%）。见 report/DSSAT_RESULTS.md §5。
+        cultivar=dict(P1=250.0, P2=0.30, P5=880.0, G2=1300.0, G3=6.20, PHINT=51.0),
+        # 提升 N 响应（2026-11 重标）：田间小区实测的线性-平台饱和点在 177 kg N/ha，
+        # 原参数（CTCNP1 1.52 / nitrate 0.24）只有 110，139 kg N/ha 以上完全不响应。
+        # CTCNP1 1.52 -> 2.00 提高临界氮浓度（作物需氮量），nitrate 0.24 -> 0.65
+        # 补偿土壤供氮。产量 RRMSE 7.40% -> 5.80%，生物量偏差 -2.8% -> -3.3%，
+        # 模型饱和点 168（田间 177），139->253 响应 5.8%（田间 11%）。
+        species=dict(CTCNP1=2.00),
+        nitrate_scale=0.65,
         sloc=(1.096, 0.85, 0.55, 0.35, 0.22, 0.12),
         control="A1",
         obs_anthesis=pd.Timestamp("2026-08-09"),
@@ -151,9 +158,8 @@ TRIALS: dict[str, TrialCfg] = {
                  TAV=14.5, AMP=13.5, REFHT=2.0, WNDHT=2.0, CO2=420.0,
                  DESC="Henan Xinxiang 2026"),
         # Calibrated in s03_calibrate.py --trial XX_SF (see report).
-        cultivar=dict(P1=235.0, P2=0.30, P5=900.0, G2=1300.0, G3=6.20, PHINT=50.0),
-        # PARSR 0.55（物种级，仅本试验）：生物量 −22.1% → −19.2%，
-        # 代价是产量 RRMSE 4.20% → 6.29%（+5.1%）。
+        cultivar=dict(P1=235.0, P2=0.30, P5=980.0, G2=1300.0, G3=4.60, PHINT=50.0),
+        # 与 SD_MY73 共用同一套 MY73 品种参数（P5 980 / G3 4.6）。
         species=dict(PARSR=0.55),
         nitrate_scale=0.55,
         sloc=(1.346, 1.05, 0.68, 0.43, 0.27, 0.15),
@@ -168,7 +174,7 @@ TRIALS: dict[str, TrialCfg] = {
     # ------------------------------------------------------------------
     # 山东潍坊 品种展示（MY73），只有生物量/产量/生育期，没有 LAI、土壤、
     # 施肥和灌溉记录。品种参数沿用 XX_SF 标定的 MY73，土壤借 SD_SF 的
-    # A3B1 剖面，施肥与灌溉按下表假设（见 report/DSSAT_PARAMETERS_SD_MY73.md）。
+    # A3B1 剖面，施肥与灌溉按下表假设（见 report/DSSAT_INPUTS_OUTPUTS.md §5）。
     # ------------------------------------------------------------------
     "SD_MY73": TrialCfg(
         name="SD_MY73", site="山东潍坊", variety="MY73", zone="dezhou",
@@ -179,9 +185,8 @@ TRIALS: dict[str, TrialCfg] = {
         sta=dict(INSI="WF01", LAT=36.71, LON=119.10, ELEV=30.0,
                  TAV=13.2, AMP=14.6, REFHT=2.0, WNDHT=2.0, CO2=420.0,
                  DESC="Shandong Weifang 2026"),
-        # 品种参数沿用 XX_SF 的 MY73；只有 P5 按本站实测 R6（10-08）重定为 980
-        # （新乡 900 对应 10-05）。
-        cultivar=dict(P1=235.0, P2=0.30, P5=980.0, G2=1300.0, G3=6.20, PHINT=50.0),
+        # 与 XX_SF 完全相同的 MY73 品种参数（P5 980 / G3 4.6）。
+        cultivar=dict(P1=235.0, P2=0.30, P5=980.0, G2=1300.0, G3=4.60, PHINT=50.0),
         species=dict(PARSR=0.55),
         nitrate_scale=0.24,
         sloc=(1.096, 0.85, 0.55, 0.35, 0.22, 0.12),
@@ -191,6 +196,9 @@ TRIALS: dict[str, TrialCfg] = {
         obs_maturity=pd.Timestamp("2026-10-08"),
         soil_prefix="WF", description="Weifang", vrname="MY73",
         soil_source=("SD_SF", "A3B1"),
+        # 高产示范田，无施肥记录但产量 12.2 t/ha 说明氮供应充足，
+        # 因此关闭氮限制（NITRO=N），不模拟 NSTD/NUCM。
+        nitrogen=False,
         assumed_n=(("2026-06-16", 108.0), ("2026-07-05", 81.0),
                    ("2026-07-25", 54.0), ("2026-08-05", 27.0)),
         assumed_irrig=(("2026-07-16", 25.0), ("2026-07-28", 25.0),
@@ -450,7 +458,7 @@ def _initial_conditions(plot: str, soil: SoilProfile, ic_date: datetime):
 
 
 def build_management(plot: str, soil: SoilProfile, *, cultivar: dict | None = None,
-                     nitrate_scale: float | None = None, nitrogen: bool = True,
+                     nitrate_scale: float | None = None, nitrogen: bool | None = None,
                      n_total_kg: float | None = None,
                      density: float | None = None) -> Management:
     """One treatment: plot density, reported irrigation, reported urea N."""
@@ -507,12 +515,14 @@ def build_management(plot: str, soil: SoilProfile, *, cultivar: dict | None = No
     if len(irr):
         t = pd.DataFrame({
             "IDATE": irr["date"].dt.strftime("%y%j"),
-            "IROP": "IR001",
-            "IRVAL": irr["mm"].astype(float).round(1),
+            "IROP": IROP_CODE,
+            "IRVAL": (irr["mm"].astype(float) * IRRIG_EFFICIENCY).round(1),
         })
     else:  # DSSAT needs at least one row
         t = pd.DataFrame({"IDATE": [ic], "IROP": ["IR001"], "IRVAL": [0]})
     man.irrigation["table"] = TabularSubsection(t)
+    # DSSAT 在报告式灌溉（IRRIG=R）下不读 EFIR（实测 1.0→0.5 结果只差 0.2%），
+    # 所以灌溉水利用系数直接乘在每次灌水量上：记录的是毛水量，写入的是有效水量。
     man.simulation_controls["IRRIG"] = "R"
 
     # --- nitrogen (urea) --------------------------------------------------
@@ -531,9 +541,24 @@ def build_management(plot: str, soil: SoilProfile, *, cultivar: dict | None = No
     rows = [dict(FDATE=placeholder_date, FMCD="FE005", FACD="AP001", FDEP=5,
                  FAMN=0, FAMP=0, FAMK=0, FAMC=0, FAMO=0,
                  FOCD="-99", FERNAME="NONE")]
+    # 施肥方式按记录自动判定：
+    #   与灌溉同日 -> AP005（随灌溉水施用，水肥一体化）
+    #   播前基肥   -> AP008（种肥同播，施于种子处）
+    #   其余       -> AP001（表施不混土）
+    irr_dates = set(irr["date"].dt.normalize())
     for _, r in fe.iterrows():
+        d = pd.Timestamp(r["date"]).normalize()
+        if FACD_MODE == "auto":
+            if d in irr_dates:
+                facd = "AP005"
+            elif d < pd.Timestamp(SOW_DATE):
+                facd = "AP008"          # 种肥同播
+            else:
+                facd = "AP001"
+        else:
+            facd = FACD_CODE
         rows.append(dict(FDATE=r["date"].strftime("%y%j"), FMCD="FE005",
-                         FACD="AP001", FDEP=5, FAMN=round(float(r["n_kg_ha"]), 2),
+                         FACD=facd, FDEP=5, FAMN=round(float(r["n_kg_ha"]), 2),
                          FAMP=0.0, FAMK=0.0, FAMC=0.0, FAMO=0.0,
                          FOCD="-99", FERNAME="UREA"))
     man.fertilizers["table"] = TabularSubsection(pd.DataFrame(rows))
@@ -551,6 +576,16 @@ def build_management(plot: str, soil: SoilProfile, *, cultivar: dict | None = No
     man.simulation_controls["FMOPT"] = "A"
     return man
 
+
+# DSSAT 的灌溉/施肥方式代码（DETAIL.CDE）：
+#   IR001 沟灌 / IR003 漫灌 / IR004 喷灌 / IR005 滴灌
+#   AP001 表施不混土 / AP002 表施混土 / AP005 随灌溉水施用（水肥一体化）
+IROP_CODE = "IR001"
+FACD_CODE = "AP001"
+# "AP001"  = 全部按表施尿素（当前正式结果用的口径）
+# "auto"   = 按记录判定：与灌溉同日 -> AP005（随水施肥），播前基肥 -> AP002，其余 AP001
+FACD_MODE = "auto"
+IRRIG_EFFICIENCY = 0.90      # 灌溉水利用系数（滴灌+管道输水，按 90%）
 
 CULTIVAR_KEYS = ["P1", "P2", "P5", "G2", "G3", "PHINT"]
 # IXIM-Maize (MZIXM048) adds two cultivar-level leaf parameters that CERES
@@ -651,7 +686,7 @@ def _read_summary(path: Path) -> dict:
 
 
 def run_plot(plot: str, cultivar: dict | None = None, *,
-             nitrate_scale: float | None = None, nitrogen: bool = True,
+             nitrate_scale: float | None = None, nitrogen: bool | None = None,
              n_total_kg: float | None = None, soil_n_output: bool = False,
              sloc_scale: float | None = None, density: float | None = None,
              ecotype: dict | None = None,
@@ -662,6 +697,8 @@ def run_plot(plot: str, cultivar: dict | None = None, *,
     When ``save`` is set the DSSAT inputs/outputs are copied to
     ``out/<trial>/mgmt`` and ``out/<trial>/sim``.
     """
+    if nitrogen is None:                  # trial-level default
+        nitrogen = CFG.nitrogen if CFG else True
     soil = build_soil(plot, sloc_scale=sloc_scale)
     wth = build_weather()
     # species-level overrides (PARSR ...) are per trial, and the patched SPE

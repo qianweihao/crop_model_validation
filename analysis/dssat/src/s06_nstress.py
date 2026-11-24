@@ -106,8 +106,10 @@ def collect() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
             rec[key + "_pot"] = float(np.nanmax(sp_s[key]))
             rec[key + "_r"] = rec[key] / rec[key + "_pot"] if rec[key + "_pot"] else np.nan
         ratios.append(rec)
-        print(f"  {plot}  N={rec['N']:3d}  胁迫起始 {onset:%m-%d} "
-              f"({rec['onset_vs_silking']:+.0f} d vs 吐丝)  "
+        when = f"{onset:%m-%d}" if pd.notna(onset) else "无"
+        off = (f"({rec['onset_vs_silking']:+.0f} d vs 吐丝)"
+               if pd.notna(rec["onset_vs_silking"]) else "（全季无持续胁迫）")
+        print(f"  {plot}  N={rec['N']:3d}  胁迫起始 {when} {off}  "
               f"产量差 {(1 - rec['yield_r']) * 100:4.1f}%")
 
     return (pd.concat(pot_rows).reset_index().rename(columns={"index": "date"}),
@@ -190,7 +192,7 @@ def draw(act: pd.DataFrame, rt: pd.DataFrame) -> Path:
     ax.set_xlabel(f"NSTD>{ONSET_THRESHOLD} 持续≥{ONSET_SUSTAIN} 天首次出现 减 吐丝日期 (d)")
     ax.set_ylabel("产量差  1 - 实际/潜在 (%)")
     ax.set_title("D  胁迫起始越早，产量损失越大")
-    ax.set_ylim(-2, gap.max() * 1.22)
+    ax.set_ylim(-2, max(gap.max(), 1) * 1.22)
 
     fig.suptitle(f"{dc.PREFIX}5｜{dc.DISPLAY} {dc.CFG.variety}｜{dc.SCEN_LABEL}"
                  f"　氮胁迫：并非只有 {dc.CONTROL_PLOT} 受限，"
@@ -220,8 +222,10 @@ def main() -> None:
     print(f"\n{p}  ({p.stat().st_size / 1024:.0f} kB)")
     print("\n胁迫起始与产量损失：")
     for r in rt.itertuples():
-        print(f"  {r.plot:5s} N={int(r.N):3d}  起始 {r.onset:%m-%d} "
-              f"({r.onset_vs_silking:+3.0f} d)  胁迫天数 {r.stress_days:3d}  "
+        when = f"{r.onset:%m-%d}" if pd.notna(r.onset) else "  无  "
+        off = f"{r.onset_vs_silking:+3.0f}" if pd.notna(r.onset_vs_silking) else "  —"
+        print(f"  {r.plot:5s} N={int(r.N):3d}  起始 {when} "
+              f"({off} d)  胁迫天数 {r.stress_days:3d}  "
               f"产量 {(1 - r.yield_r) * 100:5.1f}%  "
               f"吸氮 {(1 - r.uptake_r) * 100:5.1f}%")
 

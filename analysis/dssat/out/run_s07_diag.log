@@ -1,0 +1,335 @@
+trial SD_SF  diag -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\out\SD_SF\diag
+
+[Q1] density: measured vs nominal
+C:\Users\15945\AppData\Local\Temp\dssatifeucgpc created.
+C:\Users\15945\AppData\Local\Temp\dssatifeucgpc and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatcbylxhff created.
+C:\Users\15945\AppData\Local\Temp\dssatcbylxhff and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatlnettxph created.
+C:\Users\15945\AppData\Local\Temp\dssatlnettxph and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatoxhxwiuc created.
+C:\Users\15945\AppData\Local\Temp\dssatoxhxwiuc and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatjwwdcgqn created.
+C:\Users\15945\AppData\Local\Temp\dssatjwwdcgqn and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatpkeektin created.
+C:\Users\15945\AppData\Local\Temp\dssatpkeektin and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatjrcmrvtz created.
+C:\Users\15945\AppData\Local\Temp\dssatjrcmrvtz and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatdqvrncdi created.
+C:\Users\15945\AppData\Local\Temp\dssatdqvrncdi and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatcgmbjicg created.
+C:\Users\15945\AppData\Local\Temp\dssatcgmbjicg and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatecihhodr created.
+C:\Users\15945\AppData\Local\Temp\dssatecihhodr and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatseprbszf created.
+C:\Users\15945\AppData\Local\Temp\dssatseprbszf and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatawpcpmtv created.
+C:\Users\15945\AppData\Local\Temp\dssatawpcpmtv and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatlgbijqwp created.
+C:\Users\15945\AppData\Local\Temp\dssatlgbijqwp and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatlqqwdshu created.
+C:\Users\15945\AppData\Local\Temp\dssatlqqwdshu and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatdzknjpvc created.
+C:\Users\15945\AppData\Local\Temp\dssatdzknjpvc and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatfowxssmg created.
+C:\Users\15945\AppData\Local\Temp\dssatfowxssmg and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatlawxpuma created.
+C:\Users\15945\AppData\Local\Temp\dssatlawxpuma and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatinnotert created.
+C:\Users\15945\AppData\Local\Temp\dssatinnotert and its content has been removed.
+          yield_rrmse  yield_bias  lai_rmse  bio_bias  hi_mean  grains_per_ear  obs_hi
+measured        5.797      -0.723     0.464    -3.336    0.497         509.400   0.486
+nominal         8.331       1.720     1.088     3.268    0.476         393.144   0.486
+
+[Q2] per-plant leaf area
+C:\Users\15945\AppData\Local\Temp\dssatfvuqajci created.
+C:\Users\15945\AppData\Local\Temp\dssatfvuqajci and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatohrarcxy created.
+C:\Users\15945\AppData\Local\Temp\dssatohrarcxy and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatdbivqxoo created.
+C:\Users\15945\AppData\Local\Temp\dssatdbivqxoo and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatjyxxxdlj created.
+C:\Users\15945\AppData\Local\Temp\dssatjyxxxdlj and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatvmnvmvlr created.
+C:\Users\15945\AppData\Local\Temp\dssatvmnvmvlr and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatffojfqbt created.
+C:\Users\15945\AppData\Local\Temp\dssatffojfqbt and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatpelvpgvm created.
+C:\Users\15945\AppData\Local\Temp\dssatpelvpgvm and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatweoqtzus created.
+C:\Users\15945\AppData\Local\Temp\dssatweoqtzus and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatllkcjkjj created.
+C:\Users\15945\AppData\Local\Temp\dssatllkcjkjj and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatijkxdhui created.
+C:\Users\15945\AppData\Local\Temp\dssatijkxdhui and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatxrkejthp created.
+C:\Users\15945\AppData\Local\Temp\dssatxrkejthp and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatsddnzotg created.
+C:\Users\15945\AppData\Local\Temp\dssatsddnzotg and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatzdwojued created.
+C:\Users\15945\AppData\Local\Temp\dssatzdwojued and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatvnqzidqa created.
+C:\Users\15945\AppData\Local\Temp\dssatvnqzidqa and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatgwwgjimz created.
+C:\Users\15945\AppData\Local\Temp\dssatgwwgjimz and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatuvthgjtk created.
+C:\Users\15945\AppData\Local\Temp\dssatuvthgjtk and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatffvydwph created.
+C:\Users\15945\AppData\Local\Temp\dssatffvydwph and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatjpbfabft created.
+C:\Users\15945\AppData\Local\Temp\dssatjpbfabft and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatlutccyug created.
+C:\Users\15945\AppData\Local\Temp\dssatlutccyug and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssaturczhvdd created.
+C:\Users\15945\AppData\Local\Temp\dssaturczhvdd and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatdqydbnit created.
+C:\Users\15945\AppData\Local\Temp\dssatdqydbnit and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatcmjefown created.
+C:\Users\15945\AppData\Local\Temp\dssatcmjefown and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatfvokbctf created.
+C:\Users\15945\AppData\Local\Temp\dssatfvokbctf and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatqrstcxgj created.
+C:\Users\15945\AppData\Local\Temp\dssatqrstcxgj and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatucrlqcar created.
+C:\Users\15945\AppData\Local\Temp\dssatucrlqcar and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatfjjcxnqy created.
+C:\Users\15945\AppData\Local\Temp\dssatfjjcxnqy and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatfqgczpve created.
+C:\Users\15945\AppData\Local\Temp\dssatfqgczpve and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatajdnizyy created.
+C:\Users\15945\AppData\Local\Temp\dssatajdnizyy and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatlffixcxr created.
+C:\Users\15945\AppData\Local\Temp\dssatlffixcxr and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatohvdzliw created.
+C:\Users\15945\AppData\Local\Temp\dssatohvdzliw and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatunuaqsxj created.
+C:\Users\15945\AppData\Local\Temp\dssatunuaqsxj and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatwziezhnm created.
+C:\Users\15945\AppData\Local\Temp\dssatwziezhnm and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatjcszsguf created.
+C:\Users\15945\AppData\Local\Temp\dssatjcszsguf and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatlbacdnds created.
+C:\Users\15945\AppData\Local\Temp\dssatlbacdnds and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatlqrdicup created.
+C:\Users\15945\AppData\Local\Temp\dssatlqrdicup and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatkmhmqiey created.
+C:\Users\15945\AppData\Local\Temp\dssatkmhmqiey and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssattwzgmleh created.
+C:\Users\15945\AppData\Local\Temp\dssattwzgmleh and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatksgdsosp created.
+C:\Users\15945\AppData\Local\Temp\dssatksgdsosp and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssattlorgqwd created.
+C:\Users\15945\AppData\Local\Temp\dssattlorgqwd and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatrrykgtzw created.
+C:\Users\15945\AppData\Local\Temp\dssatrrykgtzw and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatfenottka created.
+C:\Users\15945\AppData\Local\Temp\dssatfenottka and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatjbanniht created.
+C:\Users\15945\AppData\Local\Temp\dssatjbanniht and its content has been removed.
+  reference plot A3B2; model max per-plant leaf area 0.682 m2, observed max 0.564 m2
+  model LAI ceiling 4.87 at density 11.0
+
+[Q3] biomass and harvest index
+C:\Users\15945\AppData\Local\Temp\dssatcxkilrrb created.
+C:\Users\15945\AppData\Local\Temp\dssatcxkilrrb and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatzjrvioeq created.
+C:\Users\15945\AppData\Local\Temp\dssatzjrvioeq and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatsbxqwvii created.
+C:\Users\15945\AppData\Local\Temp\dssatsbxqwvii and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatvdoeaqsp created.
+C:\Users\15945\AppData\Local\Temp\dssatvdoeaqsp and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatbrsnalgo created.
+C:\Users\15945\AppData\Local\Temp\dssatbrsnalgo and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatxocupryl created.
+C:\Users\15945\AppData\Local\Temp\dssatxocupryl and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatiultbhlr created.
+C:\Users\15945\AppData\Local\Temp\dssatiultbhlr and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatvtcejhhc created.
+C:\Users\15945\AppData\Local\Temp\dssatvtcejhhc and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatwvjbjqzz created.
+C:\Users\15945\AppData\Local\Temp\dssatwvjbjqzz and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatmcxzphtz created.
+C:\Users\15945\AppData\Local\Temp\dssatmcxzphtz and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatpggvqden created.
+C:\Users\15945\AppData\Local\Temp\dssatpggvqden and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatrjjbovkl created.
+C:\Users\15945\AppData\Local\Temp\dssatrjjbovkl and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssataazzkeqo created.
+C:\Users\15945\AppData\Local\Temp\dssataazzkeqo and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssathubynysw created.
+C:\Users\15945\AppData\Local\Temp\dssathubynysw and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatprjkqupi created.
+C:\Users\15945\AppData\Local\Temp\dssatprjkqupi and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatteixotda created.
+C:\Users\15945\AppData\Local\Temp\dssatteixotda and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatfpgyzxdw created.
+C:\Users\15945\AppData\Local\Temp\dssatfpgyzxdw and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatmbltykpz created.
+C:\Users\15945\AppData\Local\Temp\dssatmbltykpz and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatoxvnidam created.
+C:\Users\15945\AppData\Local\Temp\dssatoxvnidam and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatnlsxhlka created.
+C:\Users\15945\AppData\Local\Temp\dssatnlsxhlka and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssaterkemyqb created.
+C:\Users\15945\AppData\Local\Temp\dssaterkemyqb and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssathgovvuba created.
+C:\Users\15945\AppData\Local\Temp\dssathgovvuba and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatbqolyxvd created.
+C:\Users\15945\AppData\Local\Temp\dssatbqolyxvd and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatqvmbunsl created.
+C:\Users\15945\AppData\Local\Temp\dssatqvmbunsl and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatmjfovtgu created.
+C:\Users\15945\AppData\Local\Temp\dssatmjfovtgu and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatynfmwdoa created.
+C:\Users\15945\AppData\Local\Temp\dssatynfmwdoa and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatpnzlkaqs created.
+C:\Users\15945\AppData\Local\Temp\dssatpnzlkaqs and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatfgmbotdl created.
+C:\Users\15945\AppData\Local\Temp\dssatfgmbotdl and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssattlsusbly created.
+C:\Users\15945\AppData\Local\Temp\dssattlsusbly and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatoqbgtvtj created.
+C:\Users\15945\AppData\Local\Temp\dssatoqbgtvtj and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatxiaycsfx created.
+C:\Users\15945\AppData\Local\Temp\dssatxiaycsfx and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatjdhdbwih created.
+C:\Users\15945\AppData\Local\Temp\dssatjdhdbwih and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatoskvadxs created.
+C:\Users\15945\AppData\Local\Temp\dssatoskvadxs and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatioeyqoey created.
+C:\Users\15945\AppData\Local\Temp\dssatioeyqoey and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatkbhtwlva created.
+C:\Users\15945\AppData\Local\Temp\dssatkbhtwlva and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssattxiymkvy created.
+C:\Users\15945\AppData\Local\Temp\dssattxiymkvy and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatmfammblm created.
+C:\Users\15945\AppData\Local\Temp\dssatmfammblm and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatuufhzjuw created.
+C:\Users\15945\AppData\Local\Temp\dssatuufhzjuw and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatlcfpeugl created.
+C:\Users\15945\AppData\Local\Temp\dssatlcfpeugl and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatjwraqlrq created.
+C:\Users\15945\AppData\Local\Temp\dssatjwraqlrq and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatnkflydlm created.
+C:\Users\15945\AppData\Local\Temp\dssatnkflydlm and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatbmysquww created.
+C:\Users\15945\AppData\Local\Temp\dssatbmysquww and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssativnuarev created.
+C:\Users\15945\AppData\Local\Temp\dssativnuarev and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatvjcnwkut created.
+C:\Users\15945\AppData\Local\Temp\dssatvjcnwkut and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatjgafsakp created.
+C:\Users\15945\AppData\Local\Temp\dssatjgafsakp and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatojyrriqe created.
+C:\Users\15945\AppData\Local\Temp\dssatojyrriqe and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatvaexccyu created.
+C:\Users\15945\AppData\Local\Temp\dssatvaexccyu and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatyfikadin created.
+C:\Users\15945\AppData\Local\Temp\dssatyfikadin and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssattjyaztfo created.
+C:\Users\15945\AppData\Local\Temp\dssattjyaztfo and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatfcctjiuu created.
+C:\Users\15945\AppData\Local\Temp\dssatfcctjiuu and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatgdpipkql created.
+C:\Users\15945\AppData\Local\Temp\dssatgdpipkql and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatborebwow created.
+C:\Users\15945\AppData\Local\Temp\dssatborebwow and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatzduaeyho created.
+C:\Users\15945\AppData\Local\Temp\dssatzduaeyho and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssateoiqwhys created.
+C:\Users\15945\AppData\Local\Temp\dssateoiqwhys and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatjktydego created.
+C:\Users\15945\AppData\Local\Temp\dssatjktydego and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatrdrvslkz created.
+C:\Users\15945\AppData\Local\Temp\dssatrdrvslkz and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssathulhafcg created.
+C:\Users\15945\AppData\Local\Temp\dssathulhafcg and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatrxopvdxy created.
+C:\Users\15945\AppData\Local\Temp\dssatrxopvdxy and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatdjcvplrb created.
+C:\Users\15945\AppData\Local\Temp\dssatdjcvplrb and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatlqsoffsy created.
+C:\Users\15945\AppData\Local\Temp\dssatlqsoffsy and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatzbwiaojr created.
+C:\Users\15945\AppData\Local\Temp\dssatzbwiaojr and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatweenwlpo created.
+C:\Users\15945\AppData\Local\Temp\dssatweenwlpo and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatryntcaxz created.
+C:\Users\15945\AppData\Local\Temp\dssatryntcaxz and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatcqdcoyzz created.
+C:\Users\15945\AppData\Local\Temp\dssatcqdcoyzz and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatexvqdutj created.
+C:\Users\15945\AppData\Local\Temp\dssatexvqdutj and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatfiugpeis created.
+C:\Users\15945\AppData\Local\Temp\dssatfiugpeis and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatbtyscpbu created.
+C:\Users\15945\AppData\Local\Temp\dssatbtyscpbu and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatgscgkzyh created.
+C:\Users\15945\AppData\Local\Temp\dssatgscgkzyh and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatkhzphvao created.
+C:\Users\15945\AppData\Local\Temp\dssatkhzphvao and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatoqwymfpn created.
+C:\Users\15945\AppData\Local\Temp\dssatoqwymfpn and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatzlskxidc created.
+C:\Users\15945\AppData\Local\Temp\dssatzlskxidc and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatwfhqiokl created.
+C:\Users\15945\AppData\Local\Temp\dssatwfhqiokl and its content has been removed.
+                           bio  yield_kg     hi  grain_w_mg  grains_per_ear    obs_bio  obs_yield  bio_bias_pct  obs_hi
+scenario                                                                                                               
+G2 1100 G3 8.0       16406.000  8728.889  0.530     312.489         438.536  16284.987   7914.247         0.743   0.486
+PARSR 0.60           15741.667  7857.000  0.497     242.156         509.400  16284.987   7914.247        -3.336   0.486
+PARSR 0.60 + N400    16526.333  8349.667  0.505     242.000         540.488  16284.987   7914.247         1.482   0.486
+PARSR 0.60, G3 -15%  14768.667  6678.444  0.451     205.833         509.400  16284.987   7914.247        -9.311   0.486
+PARSR 0.80           15741.667  7857.000  0.497     242.156         509.400  16284.987   7914.247        -3.336   0.486
+base                 15741.667  7857.000  0.497     242.156         509.400  16284.987   7914.247        -3.336   0.486
+initial N 400        16526.333  8349.667  0.505     242.000         540.488  16284.987   7914.247         1.482   0.486
+nominal density      16817.222  8050.333  0.476     242.233         393.144  16284.987   7914.247         3.268   0.486
+
+[Q4] grain number and grain weight
+C:\Users\15945\AppData\Local\Temp\dssatnnpbrcws created.
+C:\Users\15945\AppData\Local\Temp\dssatnnpbrcws and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatnkxyyyii created.
+C:\Users\15945\AppData\Local\Temp\dssatnkxyyyii and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatqifbxaym created.
+C:\Users\15945\AppData\Local\Temp\dssatqifbxaym and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatkwmidoey created.
+C:\Users\15945\AppData\Local\Temp\dssatkwmidoey and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatnfnqsfgt created.
+C:\Users\15945\AppData\Local\Temp\dssatnfnqsfgt and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatwabsduny created.
+C:\Users\15945\AppData\Local\Temp\dssatwabsduny and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatasommkvl created.
+C:\Users\15945\AppData\Local\Temp\dssatasommkvl and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatqqgwvxmv created.
+C:\Users\15945\AppData\Local\Temp\dssatqqgwvxmv and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatakdmjles created.
+C:\Users\15945\AppData\Local\Temp\dssatakdmjles and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatadeoscen created.
+C:\Users\15945\AppData\Local\Temp\dssatadeoscen and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatudsqxdma created.
+C:\Users\15945\AppData\Local\Temp\dssatudsqxdma and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatmjrtabey created.
+C:\Users\15945\AppData\Local\Temp\dssatmjrtabey and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatnzozbbrz created.
+C:\Users\15945\AppData\Local\Temp\dssatnzozbbrz and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatjrhkbcia created.
+C:\Users\15945\AppData\Local\Temp\dssatjrhkbcia and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssateavjvicg created.
+C:\Users\15945\AppData\Local\Temp\dssateavjvicg and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatubkcqtjq created.
+C:\Users\15945\AppData\Local\Temp\dssatubkcqtjq and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatifxskbaw created.
+C:\Users\15945\AppData\Local\Temp\dssatifxskbaw and its content has been removed.
+C:\Users\15945\AppData\Local\Temp\dssatrqsdhyvi created.
+C:\Users\15945\AppData\Local\Temp\dssatrqsdhyvi and its content has been removed.
+plot  meas_grains_per_ear  nom_grains_per_ear  meas_grain_w_mg
+  A1                327.2               226.4            243.4
+A2B1                490.9               396.2            242.0
+A2B2                469.5               388.6            242.0
+A3B1                500.0               413.0            242.0
+A3B2                493.2               405.8            242.0
+A4B1                567.4               427.5            242.0
+A4B2                564.0               419.6            242.0
+A5B1                577.5               432.0            242.0
+A5B2                594.9               429.3            242.0
+figure -> D:\Algorithm\crop_model_validation\crop_model_validation\analysis\dssat\fig\SD_SF\diag\E_’Ô∂œ.png
