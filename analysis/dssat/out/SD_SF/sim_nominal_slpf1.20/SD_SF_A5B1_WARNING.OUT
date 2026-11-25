@@ -1,0 +1,20 @@
+*WARNING DETAIL FILE
+
+******************************************************************************
+
+*DSSAT Cropping System Model Ver. 4.8.0.028 -develop  NOV 25, 2026 13:16:01
+
+*RUN   1        : DEFAULT TREATMENT                  DZ012601    1
+
+ EXPERIMENT     : DZ012601 MZ X DEFAULT
+ DATA PATH      :
+ TREATMENT  1   : DEFAULT TREATMENT
+  
+
+ MODELN  YEAR DOY =    0   0
+ Invalid model specified.                                                      
+ Crop: MZ; Model:  MZCE048                                                     
+ Use default model from DSSATPRO.                                              
+
+ SETPM     YEAR DOY = 2026 159
+ Simulating flat surface with no plastic mulch.                                

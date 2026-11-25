@@ -104,6 +104,7 @@ class TrialCfg:
     description: str
     vrname: str
     sloc_scale: float = 1.0
+    slpf: float = 1.0          # 土壤生产力因子：缩放潜在生长（1.0=试验田，1.2~1.35=高产田）
     notes: dict = field(default_factory=dict)
     # trials without their own soil / management records borrow documented
     # stand-ins instead of silently falling back to DSSAT defaults
@@ -219,6 +220,7 @@ SOW_DATE: datetime = datetime(2026, 6, 18)
 SIM_START: datetime = datetime(2026, 6, 8)
 STA: dict = {}
 DEFAULT_CULTIVAR: dict = {}
+SLPF: float = 1.0
 SLOC_PROFILE: list = []
 SLOC_SCALE: float = 1.0
 DEFAULT_NITRATE_SCALE: float = 0.24
@@ -261,7 +263,7 @@ def set_trial(name: str) -> TrialCfg:
     """Activate a trial: rebinds paths and every parameter used downstream."""
     global TRIAL, ORDER, N_RATE, SOW_DATE, SIM_START, STA, DEFAULT_CULTIVAR
     global SLOC_PROFILE, SLOC_SCALE, DEFAULT_NITRATE_SCALE, CONTROL_PLOT, OBS_ANTHESIS
-    global OBS_MATURITY, SOIL_PREFIX, SITE_DESC, VRNAME, CFG, DISPLAY
+    global OBS_MATURITY, SOIL_PREFIX, SITE_DESC, VRNAME, CFG, DISPLAY, SLPF
     global OUT, SIM, WTH, SOIL, MGMT, FIG
 
     if name not in TRIALS:
@@ -275,6 +277,8 @@ def set_trial(name: str) -> TrialCfg:
     SIM_START = cfg.sim_start
     STA = dict(cfg.sta)
     DEFAULT_CULTIVAR = dict(cfg.cultivar)
+    # SLPF 可用环境变量 DSSAT_SLPF 临时覆盖（便于情景扫描，不改配置文件）
+    SLPF = float(os.environ.get("DSSAT_SLPF", getattr(cfg, "slpf", 1.0)))
     SLOC_PROFILE = list(cfg.sloc)
     SLOC_SCALE = cfg.sloc_scale
     DEFAULT_NITRATE_SCALE = cfg.nitrate_scale
@@ -302,8 +306,12 @@ def set_scenario(name: str) -> dict:
         raise SystemExit(f"unknown scenario {name!r}; choose from {list(SCENARIOS)}")
     scen = SCENARIOS[name]
     SCENARIO = name
-    SIM = OUT / scen["subdir"]
-    MGMT = OUT / scen["mgmt"]          # keep the .MZX audit trail per scenario
+    # SLPF != 1 时把结果分目录存放，避免与标定情景互相覆盖
+    sfx = "" if abs(SLPF - 1.0) < 1e-6 else f"_slpf{SLPF:.2f}"
+    SIM = OUT / (scen["subdir"] + sfx)
+    MGMT = OUT / (scen["mgmt"] + sfx)  # keep the .MZX audit trail per scenario
+    SIM.mkdir(parents=True, exist_ok=True)
+    MGMT.mkdir(parents=True, exist_ok=True)
     PREFIX = scen["prefix"]
     SCEN_LABEL = scen["label"]
     SCEN_SHORT = scen["short"]
@@ -432,7 +440,7 @@ def build_soil(plot: str, sloc_scale: float | None = None) -> SoilProfile:
     soil.SLDR = 0.40       # drainage fraction per day
     soil.SLRO = 75.0       # SCS runoff curve number
     soil.SLNF = 1.0        # no additional N fertility limitation
-    soil.SLPF = 1.0        # no additional P fertility limitation
+    soil.SLPF = SLPF       # 土壤生产力因子（TrialCfg.slpf 或 DSSAT_SLPF）
     return soil
 
 
